@@ -16,4 +16,7 @@
         <module>health_pc</module>
     </modules>
 
+    <properties>
+        <springfox-swagger2-version>2.9.2</springfox-swagger2-version>
+    </properties>
 </project>

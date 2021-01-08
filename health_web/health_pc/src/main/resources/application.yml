@@ -1,0 +1,21 @@
+server:
+  port: 8081
+dubbo:
+    application:            #应用配置，用于配置当前应用信息，不管该应用是提供者还是消费者。
+      name: health_web_consumer
+    registry:                 #注册中心配置，用于配置连接注册中心相关信息。
+      address: zookeeper://127.0.0.1:2181
+    consumer:
+      check: false
+#  公钥和私钥 生成地址
+#health:
+#  jwt:
+#    pubKeyPath: D:/keys/id_rsa.pub # 公钥地址
+#    priKeyPath: D:/keys/id_rsa # 私钥地址
+#    expire: 30 # 过期时间,单位分钟
+
+#spring:
+#  security:
+#    user:
+#      name: root
+#      password: 123

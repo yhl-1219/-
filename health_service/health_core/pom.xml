@@ -12,6 +12,10 @@
     <artifactId>health_core</artifactId>
 
     <dependencies>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+        </dependency>
         <!--分布式事务框架使用-->
 <!--        <dependency>-->
 <!--            <groupId>org.springframework.boot</groupId>-->

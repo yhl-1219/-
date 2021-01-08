@@ -21,3 +21,6 @@ logging:
     com:
       itheima:
         health: debug  #mybatis日志输出打印
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.log4j.Log4jImpl
