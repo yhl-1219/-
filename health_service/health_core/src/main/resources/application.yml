@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/itheima_health
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+dubbo:
+  protocol:
+    name: dubbo
+    port: -1  #服务提供者端口 2088x
+  registry:
+    address: zookeeper://localhost:2181 #注册中心地址
+  scan:
+    base-packages: com.itheima.health.service.impl #暴露服务的包扫描
+  provider:
+    timeout: 30000 #@Service(timeout=30000)
+  consumer:
+    check: false
+logging:
+  level:
+    com:
+      itheima:
+        health: debug  #mybatis日志输出打印

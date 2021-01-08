@@ -15,4 +15,54 @@
         <module>health_web</module>
     </modules>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.4.1</version>
+    </parent>
+
+    <properties>
+        <mybatisplus.version>3.3.2</mybatisplus.version>
+        <fastjson.version>1.2.72</fastjson.version>
+        <health.api.version>1.0-SNAPSHOT</health.api.version>
+        <health.commons.version>1.0-SNAPSHOT</health.commons.version>
+        <health.core.version>1.0-SNAPSHOT</health.core.version>
+        <springboot-dubbo-version>2.7.5</springboot-dubbo-version>
+        <jackson.version>2.9.0</jackson.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.itheima.health</groupId>
+                <artifactId>health_core</artifactId>
+                <version>${health.core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.itheima.health</groupId>
+                <artifactId>health_commons</artifactId>
+                <version>${health.commons.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.itheima.health</groupId>
+                <artifactId>health_api</artifactId>
+                <version>${health.api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatisplus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-extension</artifactId>
+                <version>${mybatisplus.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>

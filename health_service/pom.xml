@@ -20,4 +20,9 @@
 
     <artifactId>health_service</artifactId>
 
+    <properties>
+        <tx-lcn-version>5.0.2.RELEASE</tx-lcn-version>
+        <xxl-job-version>2.0.1</xxl-job-version>
+    </properties>
+
 </project>

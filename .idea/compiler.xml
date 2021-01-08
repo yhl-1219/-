@@ -6,16 +6,31 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="health_web" />
         <module name="health_core" />
         <module name="health_commons" />
         <module name="health_api" />
         <module name="health_appointment" />
+        <module name="health_pc" />
         <module name="health_report" />
         <module name="health_order" />
         <module name="health_member" />
         <module name="health_system" />
+        <module name="health_h5" />
       </profile>
     </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="health_api" options="-parameters" />
+      <module name="health_appointment" options="-parameters" />
+      <module name="health_commons" options="-parameters" />
+      <module name="health_core" options="-parameters" />
+      <module name="health_h5" options="-parameters" />
+      <module name="health_member" options="-parameters" />
+      <module name="health_order" options="-parameters" />
+      <module name="health_pc" options="-parameters" />
+      <module name="health_report" options="-parameters" />
+      <module name="health_system" options="-parameters" />
+    </option>
   </component>
 </project>
