@@ -13,9 +13,9 @@ public interface CheckItemService  extends IService<CheckItem> {
     /**
      * 分页查询
      *
-     * @param queryPageBean 分页查询Bean
+     * @param pageBean 分页查询Bean
      * @return 结果
      */
-    PageResult findPage(QueryPageBean queryPageBean);
+    PageResult findPage(QueryPageBean pageBean);
 
 }

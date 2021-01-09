@@ -1,5 +1,8 @@
 package com.itheima.health.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.itheima.health.entity.PageResult;
 import com.itheima.health.entity.QueryPageBean;
@@ -15,9 +18,17 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class CheckItemServiceImpl extends ServiceImpl<CheckItemMapper, CheckItem> implements CheckItemService {
+
     @Override
-    public PageResult findPage(QueryPageBean queryPageBean) {
-        return null;
+    public PageResult findPage(QueryPageBean pageBean) {
+        Page<CheckItem> page = null;
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.eq("is_delete", 0);
+        if (!StringUtils.isEmpty(pageBean.getQueryString())) {
+            queryWrapper.like("name", pageBean.getQueryString());
+        }
+        page = page(new Page<>(pageBean.getCurrentPage(), pageBean.getPageSize()), queryWrapper);
+        return new PageResult(page.getTotal(), page.getRecords());
     }
 
 }

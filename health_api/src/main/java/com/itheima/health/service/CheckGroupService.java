@@ -7,10 +7,20 @@ import com.itheima.health.entity.QueryPageBean;
 import com.itheima.health.pojo.CheckGroup;
 import com.itheima.health.vo.CheckGroupVO;
 
+/**
+ * @author wangweili 
+ */
 public interface CheckGroupService extends IService<CheckGroup> {
 
-
+    /**
+     * 查询分页
+     * 
+     * @param queryPageBean 分页数据
+     * @return PageResult
+     */
     PageResult findPage(QueryPageBean queryPageBean);
+
+    boolean add(CheckGroupDTO checkGroupDTO);
 
     CheckGroupVO findCheckIteminfosByGroupId(int id);
 
