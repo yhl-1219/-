@@ -10,10 +10,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.SneakyThrows;
 import org.apache.dubbo.config.annotation.Reference;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -40,5 +37,16 @@ public class OrderSettingsController {
         List<String[]> orderSettingList = POIUtils.readExcel(multipartFile);
         orderSettingService.importOrderSettings(orderSettingList);
         return new Result(true);
+    }
+
+    @GetMapping("/findSettingData/{year}/{month}")
+    @ApiOperation(value = "查询月份", notes = "查询月份以及对应的预约设置信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "year", value = "年"),
+            @ApiImplicitParam(name = "month", value = "月")
+    })
+    @Swagger2CommonConfiguration
+    public Result findSettingData(@PathVariable("year") int year, @PathVariable("month") int month) {
+        return new Result(orderSettingService.findSettingData(year, month));
     }
 }

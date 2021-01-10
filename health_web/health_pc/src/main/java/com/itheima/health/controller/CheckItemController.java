@@ -62,5 +62,5 @@ public class CheckItemController {
     public Result findPage(@RequestBody QueryPageBean pageBean) {
         return new Result(checkItemService.findPage(pageBean));
     }
-    
+
 }
