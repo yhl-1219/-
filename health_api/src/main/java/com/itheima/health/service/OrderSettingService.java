@@ -6,7 +6,11 @@ import com.itheima.health.pojo.OrderSetting;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author wangweili 
+ */
 public interface OrderSettingService extends IService<OrderSetting> {
+    
     boolean importOrderSettings(List<String[]> readExcelList);
 
     Map findSettingData(int year, int month);

@@ -83,8 +83,6 @@ Phealth_commons/src/main/java/com/itheima/health/utils/redis/RedissionConfig.jav
 Rhealth_commons/src/main/java/com/itheima/health/utils/resources/RedisConstant.java,b/0/b0d21a2a4487b8eaf8404d6de07500e6c45d4373
 ‰
 Yhealth_commons/src/main/java/com/itheima/health/utils/resources/RedisMessageConstant.java,b/5/b5f2099286fda6e6d2caada977c7f0a023b77541
-€
-Phealth_commons/src/main/java/com/itheima/health/utils/resources/UploadUtils.java,f/1/f1f905de2b0a98962054122ed9fbc88f5dab7f24
 v
 Fhealth_commons/src/main/java/com/itheima/health/utils/sms/SMSDemo.java,f/5/f516d196e1a2c1869a8537639bdcd39f45093c12
 w
@@ -162,3 +160,15 @@ jhealth_service/health_appointment/src/main/java/com/itheima/health/service/impl
 Whealth_web/health_pc/src/main/java/com/itheima/health/controller/SetmealController.java,0/1/01af814ffc0c0c0da5e4db4f47fc0db0c2df3883
 —
 ghealth_service/health_appointment/src/main/java/com/itheima/health/service/impl/SetmealServiceImpl.java,6/0/6021185aad801f35e98c9ec4cabf5ba163d070f3
+g
+7health_web/health_pc/src/main/resources/application.yml,5/5/55b9882a5a9084c03e9d52b64ecaf1db7d68f731
+€
+Phealth_service/health_xxl_job/src/main/java/com/itheima/health/config/MyJob.java,0/1/013f0e82f5615ffd1ae4b7b0dbca543bcbb352cb
+„
+Thealth_service/health_xxl_job/src/main/java/com/itheima/health/config/XxlConfig.java,2/c/2c8f351c3fb140baddf403e9cbbd78cd8405762b
+…
+Uhealth_service/health_xxl_job/src/main/java/com/itheima/health/XxlJobApplication.java,3/3/335b37ebbb374a5438a4a0ad65563b3d9df7746e
+p
+@health_service/health_xxl_job/src/main/resources/application.yml,a/a/aa96c4cd21cb4b8ff223be186a6fdead9a26637b
+U
+%health_service/health_xxl_job/pom.xml,9/f/9ff9fb633607757ed19a06033a1d92e71c9250e5

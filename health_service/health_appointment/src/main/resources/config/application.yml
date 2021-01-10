@@ -14,3 +14,7 @@ xxl:
       logretentiondays: -1
     admin:
       addresses: http://localhost:8091/xxl-job-admin
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true

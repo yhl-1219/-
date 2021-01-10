@@ -30,7 +30,7 @@ public class POIUtils {
         //获得Workbook工作薄对象
         Workbook workbook = getWorkBook(file);
         //创建返回对象，把每行中的值作为一个数组，所有行作为一个集合返回
-        List<String[]> list = new ArrayList<String[]>();
+        List<String[]> list = new ArrayList<>();
         if(workbook != null){
             //遍历所有的工作表
             for(int sheetNum = 0;sheetNum < workbook.getNumberOfSheets();sheetNum++){

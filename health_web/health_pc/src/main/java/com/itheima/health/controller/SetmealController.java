@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/setmeal")
-@Api(tags = "传智健康预约模块之套餐管理")
+@Api(tags = "传智健康预约模块之套餐项管理")
 public class SetmealController {
 
     @Reference
