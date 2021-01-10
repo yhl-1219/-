@@ -1,6 +1,5 @@
 package com.itheima.health.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -10,11 +9,15 @@ import com.itheima.health.entity.QueryPageBean;
 import com.itheima.health.mapper.SetmealMapper;
 import com.itheima.health.pojo.Setmeal;
 import com.itheima.health.service.SetmealService;
+import com.itheima.health.utils.aliyunoss.AliyunUtils;
+import com.itheima.health.utils.redis.RedisUtil;
+import com.itheima.health.utils.resources.RedisConstant;
 import com.itheima.health.vo.SetmealVO;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author wangweili
@@ -22,6 +25,7 @@ import java.util.List;
 @Service
 @Transactional
 public class SetmealServiceImpl extends ServiceImpl<SetmealMapper, Setmeal> implements SetmealService {
+
     @Override
     public boolean saveUpdate(SetmealDTO setmealDTO) {
         saveOrUpdate(setmealDTO);
@@ -69,7 +73,16 @@ public class SetmealServiceImpl extends ServiceImpl<SetmealMapper, Setmeal> impl
 
     @Override
     public void clearOssImg() {
-
+        Set<String> members = RedisUtil.getMembersOfSet(RedisConstant.ALL_SETMEAL_PIC_SET);
+        if (members.size() != 0) {
+            for (String uuidFilename : members) {
+                if (!RedisUtil.existsKey(RedisConstant.SINGLE_PIC + uuidFilename)) {
+                    AliyunUtils.deleteFile(uuidFilename);
+                    System.out.println("------阿里云删除垃圾图片------");
+                    RedisUtil.removeSetMember(RedisConstant.ALL_SETMEAL_PIC_SET, uuidFilename);
+                }
+            }
+        }
     }
 
     @Override

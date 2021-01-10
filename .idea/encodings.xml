@@ -9,6 +9,7 @@
     <file url="file://$PROJECT_DIR$/health_service/health_order/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/health_service/health_report/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/health_service/health_system/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/health_service/health_xxl_job/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/health_web/health_h5/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/health_web/health_pc/src/main/java" charset="UTF-8" />
   </component>

@@ -6,6 +6,8 @@ import com.itheima.health.entity.QueryPageBean;
 import com.itheima.health.entity.Result;
 import com.itheima.health.service.SetmealService;
 import com.itheima.health.utils.aliyunoss.AliyunUtils;
+import com.itheima.health.utils.redis.RedisUtil;
+import com.itheima.health.utils.resources.RedisConstant;
 import com.itheima.health.utils.upload.UploadUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -15,6 +17,8 @@ import lombok.SneakyThrows;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/setmeal")
@@ -41,7 +45,10 @@ public class SetmealController {
     })
     @Swagger2CommonConfiguration
     public Result add(@RequestBody SetmealDTO setmealDTO) {
-        return new Result(setmealService.saveUpdate(setmealDTO));
+        setmealService.saveUpdate(setmealDTO);
+        RedisUtil.removeSetMember(RedisConstant.ALL_SETMEAL_PIC_SET, setmealDTO.getImg());
+        RedisUtil.delete(RedisConstant.SINGLE_PIC + setmealDTO.getImg());
+        return new Result(true);
     }
 
     @DeleteMapping("/deleteSetmealById/{id}")
@@ -74,7 +81,9 @@ public class SetmealController {
     public Result upload(@RequestParam("imgFile") MultipartFile file) {
         String originalFilename = file.getOriginalFilename();
         String uuidFileName = UploadUtils.generateRandonFileName(originalFilename);
-        AliyunUtils.uploadMultiPartFileToAliyun(file.getBytes(),uuidFileName);
+        AliyunUtils.uploadMultiPartFileToAliyun(file.getBytes(), uuidFileName);
+        RedisUtil.addToSet(RedisConstant.ALL_SETMEAL_PIC_SET, uuidFileName);
+        RedisUtil.set(RedisConstant.SINGLE_PIC + uuidFileName, uuidFileName, 5, TimeUnit.MINUTES);
         return new Result(uuidFileName);
     }
 }

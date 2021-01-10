@@ -17,10 +17,10 @@
             <artifactId>mybatis-plus-boot-starter</artifactId>
         </dependency>
         <!--分布式事务框架使用-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-web</artifactId>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
         <!--springboot 整合dubbo 开始 -->
         <dependency>
             <groupId>org.apache.dubbo</groupId>

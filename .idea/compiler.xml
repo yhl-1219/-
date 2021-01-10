@@ -14,6 +14,7 @@
         <module name="health_pc" />
         <module name="health_report" />
         <module name="health_order" />
+        <module name="health_xxl_job" />
         <module name="health_member" />
         <module name="health_system" />
         <module name="health_h5" />
@@ -32,6 +33,7 @@
       <module name="health_pc" options="-parameters" />
       <module name="health_report" options="-parameters" />
       <module name="health_system" options="-parameters" />
+      <module name="health_xxl_job" options="-parameters" />
     </option>
   </component>
 </project>
