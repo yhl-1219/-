@@ -113,8 +113,6 @@ ihealth_service/health_appointment/src/main/java/com/itheima/health/service/impl
 Shealth_commons/src/main/java/com/itheima/health/utils/listener/StartupListener.java,9/3/93199628f2372509c067e98b57d8904986305ccb
 z
 Jhealth_commons/src/main/java/com/itheima/health/utils/redis/RedisUtil.java,2/a/2a3741355db0d79fd173d7aeb25ff4f5df9b945c
-m
-=health_service/health_core/src/main/resources/application.yml,2/4/24d00848847d9e69242eee664bdbd7a9a2f3c520
 R
 "health_service/health_core/pom.xml,0/d/0d108f4863d65d5a0b12723a1d7d057ecbc7c95a
 :
@@ -124,8 +122,6 @@ R
 	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 x
 Hhealth_web/health_pc/src/main/java/com/itheima/health/PcApplication.java,8/9/892e6fdf4fb5d37e75169163817603c3aaf74d01
-g
-7health_web/health_pc/src/main/resources/application.yml,5/5/55b9882a5a9084c03e9d52b64ecaf1db7d68f731
 L
 health_web/health_pc/pom.xml,7/c/7cf255ea5f7dcd7a3ed4eade6e1f99d5b39c8893
 B

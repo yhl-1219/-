@@ -5,12 +5,16 @@ import com.itheima.health.dto.SetmealDTO;
 import com.itheima.health.entity.QueryPageBean;
 import com.itheima.health.entity.Result;
 import com.itheima.health.service.SetmealService;
+import com.itheima.health.utils.aliyunoss.AliyunUtils;
+import com.itheima.health.utils.upload.UploadUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import lombok.SneakyThrows;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/setmeal")
@@ -41,7 +45,7 @@ public class SetmealController {
     }
 
     @DeleteMapping("/deleteSetmealById/{id}")
-    @ApiOperation(value = "删除功能",notes = "根据id删除套餐功能")
+    @ApiOperation(value = "删除功能", notes = "根据id删除套餐功能")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "要删除的数据的id")
     })
@@ -51,7 +55,7 @@ public class SetmealController {
     }
 
     @PostMapping("/findGroupIdsBySetmealId/{id}")
-    @ApiOperation(value = "查询功能",notes = "更新功能的前置")
+    @ApiOperation(value = "查询功能", notes = "更新功能的前置")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "要查询的数据的id")
     })
@@ -59,5 +63,18 @@ public class SetmealController {
     public Result findGroupIdsBySetmealId(@PathVariable("id") Integer id) {
         return new Result(setmealService.findGroupIdsBySetmealId(id));
     }
-    
+
+    @PostMapping("/upload")
+    @ApiOperation(value = "上传功能", notes = "图片的上传功能")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "file", value = "上传的文件")
+    })
+    @Swagger2CommonConfiguration
+    @SneakyThrows
+    public Result upload(@RequestParam("imgFile") MultipartFile file) {
+        String originalFilename = file.getOriginalFilename();
+        String uuidFileName = UploadUtils.generateRandonFileName(originalFilename);
+        AliyunUtils.uploadMultiPartFileToAliyun(file.getBytes(),uuidFileName);
+        return new Result(uuidFileName);
+    }
 }

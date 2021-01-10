@@ -7,6 +7,7 @@ import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ResourceBundle;
 
 
 /**
@@ -17,11 +18,17 @@ import java.io.InputStream;
  */
 public class AliyunUtils {
 
+    static {
+        ResourceBundle bundle = ResourceBundle.getBundle("AliyunKey");
+        accessKeyId = bundle.getString("accessKeyId");
+        accessKeySecret = bundle.getString("accessKeySecret");
+    }
+
     /**
      * 阿里云主账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM账号进行API访问或日常运维，请登录 https://ram.console.aliyun.com 创建RAM账号。
      */
-    public static String accessKeyId = "LTAI4G1e9u6DfnZDVEn3PD7P";
-    public static String accessKeySecret = "88jley72Ni32vezU0Rhkg6ZtGEyoQj";
+    public static String accessKeyId;
+    public static String accessKeySecret;
 
     /**
      * Endpoint以杭州为例，其它Region请按实际情况填写。
