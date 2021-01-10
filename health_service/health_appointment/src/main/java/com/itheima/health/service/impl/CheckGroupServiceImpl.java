@@ -14,6 +14,9 @@ import com.itheima.health.vo.CheckGroupVO;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * @author wangweili
  */
@@ -27,15 +30,16 @@ public class CheckGroupServiceImpl extends ServiceImpl<CheckGroupMapper, CheckGr
         if (!StringUtils.isEmpty(queryPageBean.getQueryString())) {
             wrapper.like("name", queryPageBean.getQueryString());
         }
-        Page<CheckGroup> page = page(new Page<>(queryPageBean.getCurrentPage(), queryPageBean.getPageSize()));
+        Page<CheckGroup> page = page(new Page<>(queryPageBean.getCurrentPage(), queryPageBean.getPageSize()), wrapper);
         return new PageResult(page.getTotal(), page.getRecords());
     }
 
     @Override
     public boolean add(CheckGroupDTO checkGroupDTO) {
-        save(checkGroupDTO);
+        saveOrUpdate(checkGroupDTO);
         Integer groupId = checkGroupDTO.getId();
         Integer[] checkitemIds = checkGroupDTO.getCheckitemIds();
+        baseMapper.deleteCheckGroupAndCheckItemIdsById(groupId);
         if (checkitemIds != null && checkitemIds.length != 0) {
             for (Integer checkitemId : checkitemIds) {
                 baseMapper.addCheckGroupAndCheckItemIds(groupId, checkitemId);
@@ -45,8 +49,25 @@ public class CheckGroupServiceImpl extends ServiceImpl<CheckGroupMapper, CheckGr
     }
 
     @Override
-    public CheckGroupVO findCheckIteminfosByGroupId(int id) {
-        return null;
+    public boolean deleteCheckGroupById(Integer id) {
+        baseMapper.deleteCheckGroupAndCheckItemIdsById(id);
+        CheckGroup checkGroup = new CheckGroup();
+        checkGroup.setId(id);
+        checkGroup.setIs_delete(1);
+        updateById(checkGroup);
+        return true;
+    }
+
+    @Override
+    public CheckGroupVO findCheckItemInfoByGroupId(Integer id) {
+        List<Integer> itemIds = baseMapper.findCheckItemIdsByGroupId(id);
+        int[] o = new int[itemIds.size()];
+        for (int i = 0; i < itemIds.size(); i++) {
+            o[i] = itemIds.get(i);
+        }
+        CheckGroupVO checkGroupVO = new CheckGroupVO();
+        checkGroupVO.setCheckItemIds(o);
+        return checkGroupVO;
     }
 
     @Override

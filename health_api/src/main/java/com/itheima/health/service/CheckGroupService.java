@@ -22,7 +22,9 @@ public interface CheckGroupService extends IService<CheckGroup> {
 
     boolean add(CheckGroupDTO checkGroupDTO);
 
-    CheckGroupVO findCheckIteminfosByGroupId(int id);
+    boolean deleteCheckGroupById(Integer id);
+
+    CheckGroupVO findCheckItemInfoByGroupId(Integer id);
 
     boolean saveUpdate(CheckGroupDTO checkGroupDTO);
 }

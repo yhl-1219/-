@@ -10,10 +10,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.dubbo.config.annotation.Reference;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author wangweili
@@ -27,9 +24,9 @@ public class CheckGroupController {
     private CheckGroupService checkGroupService;
 
     @PostMapping("/findPage")
-    @ApiOperation(value = "查询分页",notes = "分页查询功能")
+    @ApiOperation(value = "查询分页", notes = "分页查询功能")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "pageBean",value = "分页查询数据")
+            @ApiImplicitParam(name = "pageBean", value = "分页查询数据")
     })
     @Swagger2CommonConfiguration
     public Result findPage(@RequestBody QueryPageBean pageBean) {
@@ -37,13 +34,39 @@ public class CheckGroupController {
     }
 
     @PostMapping("/add")
-    @ApiOperation(value = "添加检查组",notes = "添加检查组功能")
+    @ApiOperation(value = "添加检查组", notes = "添加检查组功能")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "",value = "")
+            @ApiImplicitParam(name = "checkGroupDTO", value = "多表检查组")
     })
     @Swagger2CommonConfiguration
-    public Result add(CheckGroupDTO checkGroupDTO) {
+    public Result add(@RequestBody CheckGroupDTO checkGroupDTO) {
         return new Result(checkGroupService.add(checkGroupDTO));
     }
 
+    @DeleteMapping("/deleteCheckGroupById/{id}")
+    @ApiOperation(value = "删除检查组", notes = "删除检查组功能")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "要删除的id")
+    })
+    @Swagger2CommonConfiguration
+    public Result delete(@PathVariable("id") Integer id) {
+        return new Result(checkGroupService.deleteCheckGroupById(id));
+    }
+
+    @GetMapping("/findCheckItemInfoByGroupId/{id}")
+    @ApiOperation(value = "搜索CheckItems", notes = "更新检查组功能的前置功能")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "要更新的检查组的id")
+    })
+    @Swagger2CommonConfiguration
+    public Result findCheckItemInfoByGroupId(@PathVariable("id") Integer id) {
+        return new Result(checkGroupService.findCheckItemInfoByGroupId(id));
+    }
+
+    @GetMapping("/findAll")
+    @ApiOperation(value = "查询所有group",notes = "查询所有的检查组")
+    @Swagger2CommonConfiguration
+    public Result findAll() {
+        return new Result(checkGroupService.list());
+    }
 }

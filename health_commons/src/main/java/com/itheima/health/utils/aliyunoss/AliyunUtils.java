@@ -9,22 +9,34 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 
-/** AliyunUtils
+/**
+ * AliyunUtils
  * 阿里云工具类   该配置文件 默认操作杭州区域！ 其他区域 操作 需要修改区域信息代码
+ * 
+ * @author wangweili
  */
 public class AliyunUtils {
 
-    // 阿里云主账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM账号进行API访问或日常运维，请登录 https://ram.console.aliyun.com 创建RAM账号。
-    public  static  String accessKeyId = "LTAIA2KE6onERO5f";
-    public  static String accessKeySecret = "raxTWs3twt1k9ESJrS2kUyrDUMFoGx";
-    // Endpoint以杭州为例，其它Region请按实际情况填写。
-    public  static  String endpoint = "http://oss-cn-shanghai.aliyuncs.com";
-    public  static  String bucketName = "itcast117";//  空间名称
+    /**
+     * 阿里云主账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM账号进行API访问或日常运维，请登录 https://ram.console.aliyun.com 创建RAM账号。
+     */
+    public static String accessKeyId = "LTAI4G1e9u6DfnZDVEn3PD7P";
+    public static String accessKeySecret = "88jley72Ni32vezU0Rhkg6ZtGEyoQj";
+
+    /**
+     * Endpoint以杭州为例，其它Region请按实际情况填写。
+     */
+    public static String endpoint = "http://oss-cn-shanghai.aliyuncs.com";
+
+    /**
+     * 空间名称
+     */
+    public static String bucketName = "vectorwang";
 
 
     /**
-     *  删除文件
-     *  deleteFilename  阿里云上的文件名称 或者  文件目录/文件名称
+     * 删除文件
+     * deleteFilename  阿里云上的文件名称 或者  文件目录/文件名称
      */
     public static void deleteFile(String deleteFilename) {
 
@@ -42,9 +54,10 @@ public class AliyunUtils {
 
     /**
      * 上传本地文件
+     *
      * @throws FileNotFoundException
      */
-    public static void uploadLocalDiskFileToAliyun(String  uploadfilePath,String uuidfilename) {
+    public static void uploadLocalDiskFileToAliyun(String uploadfilePath, String uuidfilename) {
 
         try {
 // 创建OSSClient实例。
@@ -52,7 +65,7 @@ public class AliyunUtils {
 
 // 上传文件流。
             InputStream inputStream = new FileInputStream(uploadfilePath);
-            ossClient.putObject(bucketName, uuidfilename ,inputStream);
+            ossClient.putObject(bucketName, uuidfilename, inputStream);
 
 // 关闭OSSClient。
             ossClient.shutdown();
@@ -63,12 +76,12 @@ public class AliyunUtils {
     }
 
 
-
     /**
      * 上传文件字节数组
+     *
      * @throws FileNotFoundException
      */
-    public static void uploadMultiPartFileToAliyun(byte[] bytes,String uuidfilename) {
+    public static void uploadMultiPartFileToAliyun(byte[] bytes, String uuidfilename) {
 
         try {
 // 创建OSSClient实例。
