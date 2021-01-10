@@ -22,7 +22,6 @@
             <artifactId>health_core</artifactId>
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>

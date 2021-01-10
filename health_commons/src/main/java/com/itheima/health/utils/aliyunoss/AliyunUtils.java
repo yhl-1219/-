@@ -12,7 +12,7 @@ import java.io.InputStream;
 /**
  * AliyunUtils
  * 阿里云工具类   该配置文件 默认操作杭州区域！ 其他区域 操作 需要修改区域信息代码
- * 
+ *
  * @author wangweili
  */
 public class AliyunUtils {
