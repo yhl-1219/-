@@ -36,7 +36,7 @@ public class SmsUtils {
 
         try {
             ResourceBundle aliyunKey = ResourceBundle.getBundle("AliyunKey");
-            DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", aliyunKey.getString("smsAccessKey"), aliyunKey.getString("r9kUEMzBI45xz9tQiOCBmVif8Wal0s"));
+            DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", aliyunKey.getString("smsAccessKey"), aliyunKey.getString("smsAccessKeySecret"));
             IAcsClient client = new DefaultAcsClient(profile);
             CommonRequest request = new CommonRequest();
             request.setSysMethod(MethodType.POST);
@@ -60,7 +60,7 @@ public class SmsUtils {
 
     public static void orderSuccessMessage(String phoneNumbers, String param) throws ClientException {
         ResourceBundle aliyunKey = ResourceBundle.getBundle("AliyunKey");
-        DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", aliyunKey.getString("smsAccessKey"), aliyunKey.getString("r9kUEMzBI45xz9tQiOCBmVif8Wal0s"));
+        DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", aliyunKey.getString("smsAccessKey"), aliyunKey.getString("smsAccessKeySecret"));
         IAcsClient client = new DefaultAcsClient(profile);
 
         CommonRequest request = new CommonRequest();
