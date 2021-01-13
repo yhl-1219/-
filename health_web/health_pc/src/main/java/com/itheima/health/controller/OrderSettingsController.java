@@ -49,4 +49,15 @@ public class OrderSettingsController {
     public Result findSettingData(@PathVariable("year") int year, @PathVariable("month") int month) {
         return new Result(orderSettingService.findSettingData(year, month));
     }
+
+    @PutMapping("/updateNumberByOrderdate/{number}/{orderdate}")
+    @ApiOperation(value = "预约配置", notes = "配置当日的预约人数")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "number", value = "当日预约的人数"),
+            @ApiImplicitParam(name = "orderdate", value = "预约日期")
+    })
+    @Swagger2CommonConfiguration
+    public Result updateNumberByOrderdate(@PathVariable("number") int number, @PathVariable("orderdate") String orderdate) {
+        return new Result(orderSettingService.updateNumberByOrderDate(number, orderdate));
+    }
 }

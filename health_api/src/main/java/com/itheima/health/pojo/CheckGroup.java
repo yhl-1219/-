@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 检查组
@@ -25,8 +26,8 @@ public class CheckGroup implements Serializable {
     private String remark;//介绍
     private String attention;//注意事项
     private Integer is_delete = 0;// 是否删除  1 表示删除  0 表示未删除  添加默认未删除
-//    @TableField(exist = false) //  数据库中没有该属性对于的字段  但是实体类由于业务需要 需要集合对象
-//    private List<CheckItem> checkItems;//一个检查组合包含多个检查项
+    @TableField(exist = false) //  数据库中没有该属性对于的字段  但是实体类由于业务需要 需要集合对象
+    private List<CheckItem> checkItems;//一个检查组合包含多个检查项
 
 
 }

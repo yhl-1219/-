@@ -22,13 +22,12 @@ public class CheckItemServiceImpl extends ServiceImpl<CheckItemMapper, CheckItem
     @Override
     public PageResult findPage(QueryPageBean pageBean) {
         Page<CheckItem> page = null;
-        QueryWrapper queryWrapper = new QueryWrapper();
+        QueryWrapper<CheckItem> queryWrapper = new QueryWrapper();
         queryWrapper.eq("is_delete", 0);
         if (!StringUtils.isEmpty(pageBean.getQueryString())) {
-            queryWrapper.like("name", pageBean.getQueryString());
+            queryWrapper.like("name", pageBean.getQueryString()).or().like("code", pageBean.getQueryString());
         }
         page = page(new Page<>(pageBean.getCurrentPage(), pageBean.getPageSize()), queryWrapper);
         return new PageResult(page.getTotal(), page.getRecords());
     }
-
 }

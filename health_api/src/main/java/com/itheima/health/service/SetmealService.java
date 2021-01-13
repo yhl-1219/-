@@ -19,5 +19,5 @@ public interface SetmealService extends IService<Setmeal> {
 
     void clearOssImg();
 
-    SetmealVO findSetMealDetailById(int id);
+    Setmeal findSetMealDetailById(int id);
 }

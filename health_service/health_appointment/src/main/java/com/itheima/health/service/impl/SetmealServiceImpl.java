@@ -7,6 +7,8 @@ import com.itheima.health.dto.SetmealDTO;
 import com.itheima.health.entity.PageResult;
 import com.itheima.health.entity.QueryPageBean;
 import com.itheima.health.mapper.SetmealMapper;
+import com.itheima.health.pojo.CheckGroup;
+import com.itheima.health.pojo.CheckItem;
 import com.itheima.health.pojo.Setmeal;
 import com.itheima.health.service.SetmealService;
 import com.itheima.health.utils.aliyunoss.AliyunUtils;
@@ -55,7 +57,7 @@ public class SetmealServiceImpl extends ServiceImpl<SetmealMapper, Setmeal> impl
         QueryWrapper<Setmeal> wrapper = new QueryWrapper<>();
         wrapper.eq("is_delete", 0);
         if (queryString != null && queryString.length() != 0) {
-            wrapper.like("name", queryString);
+            wrapper.like("name", queryString).or().like("helpcode", queryString).or().like("code", queryString);
         }
         Page<Setmeal> page = page(new Page<>(queryPageBean.getCurrentPage(), queryPageBean.getPageSize()), wrapper);
         return new PageResult(page.getTotal(), page.getRecords());
@@ -86,7 +88,14 @@ public class SetmealServiceImpl extends ServiceImpl<SetmealMapper, Setmeal> impl
     }
 
     @Override
-    public SetmealVO findSetMealDetailById(int id) {
-        return null;
+    public Setmeal findSetMealDetailById(int id) {
+        Setmeal setmeal = baseMapper.selectById(id);
+        List<CheckGroup> checkGroupList = baseMapper.findCheckGroupIdsBySetmealId(id);
+        for (CheckGroup checkGroup : checkGroupList) {
+            List<CheckItem> checkItemList = baseMapper.findCheckItemsByGroupId(checkGroup.getId());
+            checkGroup.setCheckItems(checkItemList);
+        }
+        setmeal.setCheckGroups(checkGroupList);
+        return setmeal;
     }
 }

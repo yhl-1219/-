@@ -59,7 +59,7 @@ public class OrderSettingServiceImpl extends ServiceImpl<OrderSettingMapper, Ord
 
     @Override
     public boolean updateNumberByOrderDate(int number, String orderdate) {
-        return false;
+        return baseMapper.updateNumberByOrderDate(number, orderdate);
     }
 
     @Override

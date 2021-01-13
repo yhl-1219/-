@@ -1,6 +1,8 @@
 package com.itheima.health.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.itheima.health.pojo.CheckGroup;
+import com.itheima.health.pojo.CheckItem;
 import com.itheima.health.pojo.Setmeal;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
@@ -21,5 +23,11 @@ public interface SetmealMapper extends BaseMapper<Setmeal> {
     void deleteSetmealAndCheckGroupById(@Param("setmealId") Integer setmealId);
 
     @Select("select checkgroup_id from t_setmeal_checkgroup where setmeal_id = #{setmealId}")
-    List<Integer> findGroupIdsBySetmealId(@Param("setmealId") Integer id);
+    List<Integer> findGroupIdsBySetmealId(@Param("id") Integer id);
+
+    @Select("select t_checkgroup.* from t_setmeal,t_setmeal_checkgroup,t_checkgroup where t_setmeal.id = #{id} and t_setmeal_checkgroup.setmeal_id = t_setmeal.id and t_checkgroup.id = t_setmeal_checkgroup.checkgroup_id and t_checkgroup.is_delete = 0 and t_setmeal.is_delete = 0")
+    List<CheckGroup> findCheckGroupIdsBySetmealId(@Param("id") Integer id);
+
+    @Select("select * from t_checkitem where id = #{id} and is_delete = 0")
+    List<CheckItem> findCheckItemsByGroupId(@Param("id") Integer id);
 }

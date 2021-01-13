@@ -28,7 +28,7 @@ public class CheckGroupServiceImpl extends ServiceImpl<CheckGroupMapper, CheckGr
         QueryWrapper<CheckGroup> wrapper = new QueryWrapper<>();
         wrapper.eq("is_delete", 0);
         if (!StringUtils.isEmpty(queryPageBean.getQueryString())) {
-            wrapper.like("name", queryPageBean.getQueryString());
+            wrapper.like("name", queryPageBean.getQueryString()).or().like("code", queryPageBean.getQueryString());
         }
         Page<CheckGroup> page = page(new Page<>(queryPageBean.getCurrentPage(), queryPageBean.getPageSize()), wrapper);
         return new PageResult(page.getTotal(), page.getRecords());
