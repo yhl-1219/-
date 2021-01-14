@@ -2,6 +2,7 @@ package com.itheima.health.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.codingapi.txlcn.tc.annotation.LcnTransaction;
 import com.itheima.health.mapper.MemberMapper;
 import com.itheima.health.pojo.Member;
 import com.itheima.health.service.MemberService;
@@ -19,8 +20,10 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
         return getOne(wrapper);
     }
 
+    @LcnTransaction
     @Override
     public int saveMember(Member member) {
-        return 0;
+        save(member);
+        return 1;
     }
 }

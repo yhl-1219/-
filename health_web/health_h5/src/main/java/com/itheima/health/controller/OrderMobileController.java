@@ -9,7 +9,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.models.auth.In;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.*;
@@ -63,6 +62,6 @@ public class OrderMobileController {
     })
     @Swagger2CommonConfiguration
     public Result search(@PathVariable("id") Integer id) {
-        return new Result(orderService.getById(id));
+        return new Result(orderService.findOrderInfoById(id));
     }
 }

@@ -6,9 +6,11 @@
     <file url="file://$PROJECT_DIR$/health_service/health_appointment/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/health_service/health_core/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/health_service/health_member/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/health_service/health_mq/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/health_service/health_order/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/health_service/health_report/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/health_service/health_system/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/health_tm/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/health_web/health_h5/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/health_web/health_pc/src/main/java" charset="UTF-8" />
   </component>

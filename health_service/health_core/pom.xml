@@ -58,15 +58,15 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
         <!--分布式事务配置-->
-<!--        <dependency>-->
-<!--            <groupId>com.codingapi.txlcn</groupId>-->
-<!--            <artifactId>txlcn-tc</artifactId>-->
-<!--            <version>${tx-lcn-version}</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>com.codingapi.txlcn</groupId>-->
-<!--            <artifactId>txlcn-txmsg-netty</artifactId>-->
-<!--            <version>${tx-lcn-version}</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>com.codingapi.txlcn</groupId>
+            <artifactId>txlcn-tc</artifactId>
+            <version>${tx-lcn-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.codingapi.txlcn</groupId>
+            <artifactId>txlcn-txmsg-netty</artifactId>
+            <version>${tx-lcn-version}</version>
+        </dependency>
     </dependencies>
 </project>

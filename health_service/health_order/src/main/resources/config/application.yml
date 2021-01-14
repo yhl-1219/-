@@ -1,0 +1,19 @@
+#业务应用配置  优先加载，可以重写 health_core 配置文件信息
+server:
+  port: 9093
+spring:
+  application:
+    name: order-application #应用名称
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+
+#dubbo:
+#  application:            #应用配置，用于配置当前应用信息，不管该应用是提供者还是消费者。
+#    name: order
+#  registry:                 #注册中心配置，用于配置连接注册中心相关信息。
+#    address: zookeeper://127.0.0.1:2181
+#    port: -1
+#  consumer:
+#    check: false

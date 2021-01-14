@@ -5,15 +5,24 @@ spring:
   application:
     name: provider-application
   rabbitmq:
-    virtual-host: /heima
+    virtual-host: test
     username: guest
     password: guest
     addresses: 127.0.0.1:5672
+    publisher-confirms: true
+    publisher-returns: true
+  mail:
+    username: wangweilisol@126.com
+    password: wwl85808987
+    host: smtp.126.com
+    port: 25
+    default-encoding: UTF-8
+    protocol: smtp
 
 dubbo:
-  application:            #应用配置，用于配置当前应用信息，不管该应用是提供者还是消费者。
+  application: #应用配置，用于配置当前应用信息，不管该应用是提供者还是消费者。
     name: h5_consumer
-  registry:                 #注册中心配置，用于配置连接注册中心相关信息。
+  registry: #注册中心配置，用于配置连接注册中心相关信息。
     address: zookeeper://127.0.0.1:2181
     port: -1
   consumer:

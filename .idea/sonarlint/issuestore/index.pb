@@ -168,8 +168,6 @@ Y
 )health_commons/src/test/java/PoiTest.java,a/6/a649b6dd38ce7a11bc45f917654d2d6f1e565b9c
 ç
 ]health_web/health_pc/src/main/java/com/itheima/health/controller/OrderSettingsController.java,a/e/aeff148eebf177be2633d7d24c7df9a5875dc28d
-m
-=health_service/health_core/src/main/resources/application.yml,2/4/24d00848847d9e69242eee664bdbd7a9a2f3c520
 å
 \health_web/health_h5/src/main/java/com/itheima/health/controller/GlobalExceptionHandler.java,a/0/a0e6c947b3342bacf033ad3072e3e86c5cacea55
 

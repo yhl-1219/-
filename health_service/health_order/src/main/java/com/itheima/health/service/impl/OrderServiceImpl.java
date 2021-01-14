@@ -4,16 +4,19 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.itheima.health.mapper.OrderMapper;
 import com.itheima.health.pojo.Member;
 import com.itheima.health.pojo.Order;
+import com.itheima.health.pojo.Setmeal;
 import com.itheima.health.service.MemberService;
 import com.itheima.health.service.OrderService;
 import com.itheima.health.service.OrderSettingService;
 import com.itheima.health.utils.date.DateUtils;
+import lombok.SneakyThrows;
 import org.apache.dubbo.config.annotation.Reference;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 @Service
@@ -42,7 +45,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
                     .phoneNumber(telephone)
                     .regTime(new Date())
                     .build();
-            memberService.save(memberFountByTelephone);
+            memberService.saveMember(memberFountByTelephone);
+            memberFountByTelephone = memberService.findMemberByTelephone(telephone);
         }
         if (baseMapper.findOrderBySetmealIdAndOrderDateAndMemberId(Integer.valueOf(map.get("setmealId")), orderDate, memberFountByTelephone.getId()) > 0) {
             throw new RuntimeException("您已经预约过，请择日再约");
@@ -60,7 +64,20 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     }
 
     @Override
+    @SneakyThrows
     public Map findOrderInfoById(int id) {
-        return null;
+        Order order = getById(id);
+        Member memberById = memberService.getById(order.getMemberId());
+        Setmeal setmealbyId = baseMapper.getSetmealById(order.getSetmealId());
+        String orderDate = DateUtils.parseDate2String(order.getOrderDate());
+        String orderType = order.getOrderType();
+        String member = memberById.getName();
+        String setmeal = setmealbyId.getName();
+        HashMap<String, String> map = new HashMap<>();
+        map.put("orderDate", orderDate);
+        map.put("orderType", orderType);
+        map.put("member", member);
+        map.put("setmeal", setmeal);
+        return map;
     }
 }

@@ -2,6 +2,7 @@ package com.itheima.health.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.codingapi.txlcn.tc.annotation.LcnTransaction;
 import com.itheima.health.mapper.OrderSettingMapper;
 import com.itheima.health.pojo.OrderSetting;
 import com.itheima.health.service.OrderSettingService;
@@ -69,6 +70,7 @@ public class OrderSettingServiceImpl extends ServiceImpl<OrderSettingMapper, Ord
     }
 
     @Override
+    @LcnTransaction
     public void updateReservationsByOrderDate(String orderdate) {
         baseMapper.updateReservationsByOrderDate(orderdate);
     }

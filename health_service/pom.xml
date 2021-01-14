@@ -16,6 +16,7 @@
         <module>health_order</module>
         <module>health_report</module>
         <module>health_system</module>
+        <module>health_mq</module>
     </modules>
 
     <artifactId>health_service</artifactId>

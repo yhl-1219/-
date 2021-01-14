@@ -1,0 +1,26 @@
+#业务应用配置  优先加载，可以重写 health_core 配置文件信息
+server:
+  port: 9094
+spring:
+  application:
+    name: mq-application #应用名称
+  rabbitmq:
+    virtual-host: test
+    username: guest
+    password: guest
+    addresses: 127.0.0.1:5672
+      # cache:
+    #  connection:
+    #   mode: channel
+    listener:
+      simple:
+        acknowledge-mode: manual
+        concurrency: 10
+        max-concurrency: 20
+        prefetch: 5
+        retry:
+          enabled: true
+          max-attempts: 2
+          initial-interval: 5000
+          max-interval: 120000
+          multiplier: 2

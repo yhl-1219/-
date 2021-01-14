@@ -12,15 +12,20 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.dubbo.config.annotation.Reference;
+import org.example.config.RabbitMqConfig;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 @RestController
 @Api(tags = "传智健康移动模块之套餐模块")
 @RequestMapping("/setmeal")
 public class SetmealMobileController {
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     @Reference
     private SetmealService setmealService;
@@ -33,6 +38,7 @@ public class SetmealMobileController {
     }
 
     @GetMapping("/findSetMealDetail")
+    @ApiOperation(value = "查询套餐细节", notes = "使用id查询套餐细节")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "套餐id")})
     @Swagger2CommonConfiguration
@@ -47,6 +53,7 @@ public class SetmealMobileController {
     }
 
     @GetMapping("/findById")
+    @ApiOperation(value = "查找套餐", notes = "查找套餐")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "套餐id")})
     @Swagger2CommonConfiguration
@@ -55,11 +62,13 @@ public class SetmealMobileController {
     }
 
     @PostMapping("/generateCode/{telephone}")
+    @ApiOperation(value = "发送验证码", notes = "发送验证码")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "telephone", value = "电话号码")})
     @Swagger2CommonConfiguration
     public Result generateCode(@PathVariable("telephone") String telephone) {
-        int o = new Random().nextInt(900000) + 100000;
-        RedisUtil.set(RedisMessageConstant.SENDTYPE_ORDER + telephone, o, 5, TimeUnit.MINUTES);
-        return new Result(o);
+        rabbitTemplate.convertAndSend(RabbitMqConfig.TEST_EXCHANGE, "email-key", telephone);
+        return new Result(true);
     }
 
 }
