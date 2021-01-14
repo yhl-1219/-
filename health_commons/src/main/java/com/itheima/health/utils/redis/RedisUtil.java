@@ -86,8 +86,8 @@ public class RedisUtil {
         return redisTemplate.hasKey(key);
     }
 
-    public static <T> T get(String key) {
-        return (T) redisTemplate.opsForValue().get(key);
+    public static Object get(String key) {
+        return redisTemplate.opsForValue().get(key);
     }
 
     public static void delete(String key) {

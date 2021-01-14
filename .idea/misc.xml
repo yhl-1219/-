@@ -79,6 +79,7 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/health_appointment/pom.xml" />
+        <option value="$PROJECT_DIR$/health_service/health_xxl_job/pom.xml" />
       </set>
     </option>
   </component>

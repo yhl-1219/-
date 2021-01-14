@@ -17,6 +17,9 @@ public interface OrderSettingMapper extends BaseMapper<OrderSetting> {
     List<OrderSetting> findSettingDataByYearAndMonth(@Param("beginTime") String beginTime, @Param("endTime") String endTime);
 
     @Update("update t_ordersetting set number = #{number} where orderdate = #{orderdate}")
-    boolean updateNumberByOrderDate(@Param("number") int number,@Param("orderdate") String orderdate);
+    boolean updateNumberByOrderDate(@Param("number") int number, @Param("orderdate") String orderdate);
+
+    @Update("update t_ordersetting set reservations = reservations + 1 where orderdate = #{orderdate}")
+    void updateReservationsByOrderDate(@Param("orderdate") String orderdate);
 
 }

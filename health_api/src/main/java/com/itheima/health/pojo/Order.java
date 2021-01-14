@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -13,6 +14,7 @@ import java.util.Date;
  * 体检预约信息
  */
 @Data
+@Builder
 @TableName(value = "t_order")
 public class Order implements Serializable{
     public static final String ORDERTYPE_TELEPHONE = "电话预约";

@@ -6,7 +6,8 @@ import com.itheima.health.pojo.Order;
 import java.util.Map;
 
 public interface OrderService extends IService<Order> {
-    Order add(Map map);
+
+    Order add(Map<String, String> map);
 
     Map findOrderInfoById(int id);
 }

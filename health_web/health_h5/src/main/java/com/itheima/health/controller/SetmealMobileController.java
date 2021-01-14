@@ -4,16 +4,18 @@ import com.itheima.health.config.Swagger2CommonConfiguration;
 import com.itheima.health.entity.Result;
 import com.itheima.health.pojo.Setmeal;
 import com.itheima.health.service.SetmealService;
+import com.itheima.health.utils.redis.RedisUtil;
 import com.itheima.health.utils.resources.MessageConstant;
+import com.itheima.health.utils.resources.RedisMessageConstant;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.dubbo.config.annotation.Reference;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 @Api(tags = "传智健康移动模块之套餐模块")
@@ -50,6 +52,14 @@ public class SetmealMobileController {
     @Swagger2CommonConfiguration
     public Result findById(@RequestParam("id") Integer id) {
         return new Result(setmealService.getById(id));
+    }
+
+    @PostMapping("/generateCode/{telephone}")
+    @Swagger2CommonConfiguration
+    public Result generateCode(@PathVariable("telephone") String telephone) {
+        int o = new Random().nextInt(900000) + 100000;
+        RedisUtil.set(RedisMessageConstant.SENDTYPE_ORDER + telephone, o, 5, TimeUnit.MINUTES);
+        return new Result(o);
     }
 
 }

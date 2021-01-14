@@ -45,8 +45,12 @@ public class SetmealController {
     })
     @Swagger2CommonConfiguration
     public Result add(@RequestBody SetmealDTO setmealDTO) {
-        setmealService.saveUpdate(setmealDTO);
         RedisUtil.removeSetMember(RedisConstant.ALL_SETMEAL_PIC_SET, setmealDTO.getImg());
+        if (!RedisUtil.existsKey(RedisConstant.SINGLE_PIC + setmealDTO.getImg())) {
+            AliyunUtils.deleteFile(setmealDTO.getImg());
+            return new Result(false, "图片上传超时！请重新上传");
+        }
+        setmealService.saveUpdate(setmealDTO);
         RedisUtil.delete(RedisConstant.SINGLE_PIC + setmealDTO.getImg());
         return new Result(true);
     }

@@ -14,12 +14,14 @@
         <module name="health_pc" />
         <module name="health_report" />
         <module name="health_order" />
-        <module name="health_xxl_job" />
         <module name="health_member" />
         <module name="health_system" />
         <module name="health_h5" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="health_xxl_job" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

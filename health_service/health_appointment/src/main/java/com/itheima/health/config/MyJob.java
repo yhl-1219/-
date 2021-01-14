@@ -21,7 +21,7 @@ public class MyJob extends IJobHandler {
     @Override
     public ReturnT<String> execute(String param) throws Exception {
         System.out.println("clearOssObject!!!!!");
-        setmealService.clearOssImg();
+//        setmealService.clearOssImg();
         return SUCCESS;
     }
 }

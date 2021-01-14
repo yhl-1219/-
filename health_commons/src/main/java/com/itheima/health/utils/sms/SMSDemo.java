@@ -7,10 +7,13 @@ import com.aliyuncs.IAcsClient;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 
+import java.util.ResourceBundle;
+
 public class SMSDemo {
 
     public static void main(String[] args) {
-        DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "LTAILlflJAmVwH25", "vxbZLEZVsNh7y5eljTIzbFWbrSTexN");
+        ResourceBundle aliyunKey = ResourceBundle.getBundle("AliyunKey");
+        DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", aliyunKey.getString("smsAccessKey"), aliyunKey.getString("smsAccessKeySecret"));
         IAcsClient client = new DefaultAcsClient(profile);
 
         CommonRequest request = new CommonRequest();
@@ -20,8 +23,8 @@ public class SMSDemo {
         request.setSysAction("SendSms");
         request.putQueryParameter("RegionId", "cn-hangzhou");
         request.putQueryParameter("PhoneNumbers", "18841281217");
-        request.putQueryParameter("SignName", "传智健康黑马唐");
-        request.putQueryParameter("TemplateCode", "SMS_192541299");
+        request.putQueryParameter("SignName", "传智健康健康管理");
+        request.putQueryParameter("TemplateCode", "SMS_209470154");
         request.putQueryParameter("TemplateParam", "{\"code\":\"3456\"}");
         try {
             CommonResponse response = client.getCommonResponse(request);

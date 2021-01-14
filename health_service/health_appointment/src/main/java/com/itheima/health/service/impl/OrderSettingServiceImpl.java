@@ -10,13 +10,12 @@ import lombok.SneakyThrows;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
  * @author wangweili
  */
-@Service
+@Service(timeout = 200000, retries = 0)
 @Transactional
 public class OrderSettingServiceImpl extends ServiceImpl<OrderSettingMapper, OrderSetting> implements OrderSettingService {
 
@@ -64,12 +63,14 @@ public class OrderSettingServiceImpl extends ServiceImpl<OrderSettingMapper, Ord
 
     @Override
     public int isOrderOKorNot(String orderdate) {
-        return 0;
+        QueryWrapper<OrderSetting> wrapper = new QueryWrapper<>();
+        wrapper.eq("orderdate", orderdate);
+        return getOne(wrapper) == null ? 0 : 1;
     }
 
     @Override
     public void updateReservationsByOrderDate(String orderdate) {
-
+        baseMapper.updateReservationsByOrderDate(orderdate);
     }
 
     private List<OrderSetting> changeStringToList(List<String[]> readExcelList) {
@@ -78,6 +79,9 @@ public class OrderSettingServiceImpl extends ServiceImpl<OrderSettingMapper, Ord
             for (String[] strings : readExcelList) {
                 OrderSetting orderSetting = new OrderSetting();
                 orderSetting.setReservations(0);
+                if ("".equals(strings[1])) {
+                    strings[1] = "0";
+                }
                 orderSetting.setNumber(Integer.parseInt(strings[1]));
                 orderSetting.setOrderDate(DateUtils.parseString2Date(strings[0], "yyyy/MM/dd"));
                 list.add(orderSetting);

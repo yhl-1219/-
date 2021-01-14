@@ -160,14 +160,6 @@ jhealth_service/health_appointment/src/main/java/com/itheima/health/service/impl
 Whealth_web/health_pc/src/main/java/com/itheima/health/controller/SetmealController.java,0/1/01af814ffc0c0c0da5e4db4f47fc0db0c2df3883
 ó
 ghealth_service/health_appointment/src/main/java/com/itheima/health/service/impl/SetmealServiceImpl.java,6/0/6021185aad801f35e98c9ec4cabf5ba163d070f3
-Ä
-Phealth_service/health_xxl_job/src/main/java/com/itheima/health/config/MyJob.java,0/1/013f0e82f5615ffd1ae4b7b0dbca543bcbb352cb
-Ñ
-Thealth_service/health_xxl_job/src/main/java/com/itheima/health/config/XxlConfig.java,2/c/2c8f351c3fb140baddf403e9cbbd78cd8405762b
-Ö
-Uhealth_service/health_xxl_job/src/main/java/com/itheima/health/XxlJobApplication.java,3/3/335b37ebbb374a5438a4a0ad65563b3d9df7746e
-U
-%health_service/health_xxl_job/pom.xml,9/f/9ff9fb633607757ed19a06033a1d92e71c9250e5
 ë
 ahealth_service/health_appointment/src/main/java/com/itheima/health/mapper/OrderSettingMapper.java,e/8/e8e1b21b51101dc8b1234c17777f0edfdc48d1b1
 ú
@@ -192,3 +184,7 @@ Zhealth_commons/src/main/java/com/itheima/health/utils/valicateUtils/ValidateCod
 Thealth_commons/src/main/java/com/itheima/health/utils/resources/MessageConstant.java,6/f/6f71ee65b817ee938a4ffbea3da798d5b194bd5e
 ç
 ]health_web/health_h5/src/main/java/com/itheima/health/controller/SetmealMobileController.java,e/e/eec7f1c1ac7a96f1475db183a2c2e71fb442bffc
+à
+Xhealth_service/health_appointment/src/main/java/com/itheima/health/config/XxlConfig.java,9/e/9e9091c3a270e826c505abe482c172232e97abc2
+Ñ
+Thealth_service/health_appointment/src/main/java/com/itheima/health/config/MyJob.java,1/d/1dae806721ad2d44ff0b39bb28bff4f6b07f5166

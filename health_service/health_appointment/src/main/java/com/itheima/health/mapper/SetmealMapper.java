@@ -22,7 +22,7 @@ public interface SetmealMapper extends BaseMapper<Setmeal> {
     @Delete("delete from t_setmeal_checkgroup where setmeal_id = #{setmealId}")
     void deleteSetmealAndCheckGroupById(@Param("setmealId") Integer setmealId);
 
-    @Select("select checkgroup_id from t_setmeal_checkgroup where setmeal_id = #{setmealId}")
+    @Select("select checkgroup_id from t_setmeal_checkgroup where setmeal_id = #{id}")
     List<Integer> findGroupIdsBySetmealId(@Param("id") Integer id);
 
     @Select("select t_checkgroup.* from t_setmeal,t_setmeal_checkgroup,t_checkgroup where t_setmeal.id = #{id} and t_setmeal_checkgroup.setmeal_id = t_setmeal.id and t_checkgroup.id = t_setmeal_checkgroup.checkgroup_id and t_checkgroup.is_delete = 0 and t_setmeal.is_delete = 0")
