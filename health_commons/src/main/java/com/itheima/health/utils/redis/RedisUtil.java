@@ -24,6 +24,7 @@ public class RedisUtil {
         redisTemplate = template;
         redisTemplate.setKeySerializer(new StringRedisSerializer());
         redisTemplate.setValueSerializer(new FastJsonRedisSerializer<>(Object.class));
+        redisTemplate.setEnableTransactionSupport(true);
     }
 
     public static RedisTemplate<String, Object> getInstance() {

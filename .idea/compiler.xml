@@ -10,15 +10,16 @@
         <module name="health_core" />
         <module name="health_tm" />
         <module name="health_commons" />
-        <module name="health_api" />
         <module name="health_appointment" />
-        <module name="health_mq" />
         <module name="health_pc" />
+        <module name="health_security" />
+        <module name="health_system" />
+        <module name="health_h5" />
+        <module name="health_api" />
+        <module name="health_mq" />
         <module name="health_report" />
         <module name="health_order" />
         <module name="health_member" />
-        <module name="health_system" />
-        <module name="health_h5" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -37,6 +38,7 @@
       <module name="health_order" options="-parameters" />
       <module name="health_pc" options="-parameters" />
       <module name="health_report" options="-parameters" />
+      <module name="health_security" options="-parameters" />
       <module name="health_system" options="-parameters" />
       <module name="health_tm" options="-parameters" />
       <module name="health_xxl_job" options="-parameters" />
