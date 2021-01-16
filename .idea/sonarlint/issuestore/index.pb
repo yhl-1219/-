@@ -223,4 +223,14 @@ Ohealth_commons/src/main/java/com/itheima/health/utils/tencentcloud/SendSms.java
 „
 Thealth_service/health_member/src/main/java/com/itheima/health/MemberApplication.java,e/f/efd92aa036072a1e039d2fe89c003050dfb64deb
 ƒ
-Shealth_web/health_pc/src/main/java/com/itheima/health/config/MySecurityAdaptor.java,c/e/ce58dd30d78ccb37da6b4db83278527d8ad3ec0d
+Shealth_web/health_h5/src/main/java/com/itheima/health/config/MySecurityAdaptor.java,9/4/94efa0d81a1a225575429b220a8e5f74e586ca2c
+†
+Vhealth_service/health_security/src/main/java/com/itheima/health/mapper/UserMapper.java,8/7/87971b2b57c5efb653a68b59b8d314c02ba8eb18
+‘
+ahealth_service/health_security/src/main/java/com/itheima/health/service/impl/UserServiceImpl.java,d/9/d9f787ac22f6d2508b407bf392704b920746dc3e
+ˆ
+Xhealth_service/health_security/src/main/java/com/itheima/health/SecurityApplication.java,d/4/d41860c7c0c1b073037be962974bf473d42a297a
+x
+Hhealth_service/health_security/src/main/resources/config/application.yml,1/2/12215ddee9d1b959f0edd96e11e0a43a9713f4ea
+V
+&health_service/health_security/pom.xml,b/e/be5cff2ef457c30304e228014d4216214002163f
