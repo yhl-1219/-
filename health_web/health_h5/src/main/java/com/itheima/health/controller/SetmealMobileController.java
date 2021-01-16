@@ -1,5 +1,6 @@
 package com.itheima.health.controller;
 
+import com.itheima.health.config.RabbitMqConfig;
 import com.itheima.health.config.Swagger2CommonConfiguration;
 import com.itheima.health.entity.Result;
 import com.itheima.health.pojo.Setmeal;
@@ -12,7 +13,6 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.dubbo.config.annotation.Reference;
-import org.example.config.RabbitMqConfig;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

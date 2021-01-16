@@ -66,7 +66,11 @@ public class OrderSettingServiceImpl extends ServiceImpl<OrderSettingMapper, Ord
     public int isOrderOKorNot(String orderdate) {
         QueryWrapper<OrderSetting> wrapper = new QueryWrapper<>();
         wrapper.eq("orderdate", orderdate);
-        return getOne(wrapper) == null ? 0 : 1;
+        OrderSetting one = getOne(wrapper);
+        if (one == null) {
+            return 0;
+        }
+        return one.getNumber() > one.getReservations() ? 1 : 0;
     }
 
     @Override

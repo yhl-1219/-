@@ -1,4 +1,4 @@
-package org.example.config;
+package com.itheima.health.config;
 
 import org.springframework.amqp.core.*;
 import org.springframework.beans.factory.annotation.Qualifier;

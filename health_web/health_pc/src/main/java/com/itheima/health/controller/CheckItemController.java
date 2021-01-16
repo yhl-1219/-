@@ -7,6 +7,7 @@ import com.itheima.health.pojo.CheckItem;
 import com.itheima.health.service.CheckItemService;
 import io.swagger.annotations.*;
 import org.apache.dubbo.config.annotation.Reference;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -26,6 +27,7 @@ public class CheckItemController {
     @GetMapping("/findAll")
     @ApiOperation(value = "查询功能", notes = "查询全体检查项")
     @Swagger2CommonConfiguration
+    @PreAuthorize("hasAuthority('CHECKITEM_QUERY')")
     public Result findPage() {
         return new Result(checkItemService.list());
     }

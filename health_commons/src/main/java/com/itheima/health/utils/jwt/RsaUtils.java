@@ -99,8 +99,8 @@ public class RsaUtils {
 
     public static void main(String[] args) throws Exception {
         // 公钥和私钥的地址   ssh
-        String publicKeyFilename = "D:/keys/id_rsa.pub";
-        String privateKeyFilename = "D:/keys/id_rsa";
+        String publicKeyFilename = "/Users/wangweili/Desktop/id_rsa.pub";
+        String privateKeyFilename = "/Users/wangweili/Desktop/id_rsa";
         // 密文
         String secret = "HelloWorld";
         // 生成公钥和私钥

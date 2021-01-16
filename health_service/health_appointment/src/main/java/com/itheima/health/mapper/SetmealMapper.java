@@ -28,6 +28,6 @@ public interface SetmealMapper extends BaseMapper<Setmeal> {
     @Select("select t_checkgroup.* from t_setmeal,t_setmeal_checkgroup,t_checkgroup where t_setmeal.id = #{id} and t_setmeal_checkgroup.setmeal_id = t_setmeal.id and t_checkgroup.id = t_setmeal_checkgroup.checkgroup_id and t_checkgroup.is_delete = 0 and t_setmeal.is_delete = 0")
     List<CheckGroup> findCheckGroupIdsBySetmealId(@Param("id") Integer id);
 
-    @Select("select * from t_checkitem where id = #{id} and is_delete = 0")
+    @Select("select * from t_checkitem,t_checkgroup_checkitem,t_checkgroup where t_checkitem.id = t_checkgroup_checkitem.checkitem_id and t_checkgroup_checkitem.checkgroup_id = t_checkgroup.id and t_checkgroup.is_delete = 0 and t_checkitem.is_delete = 0 and t_checkgroup.id = #{id}")
     List<CheckItem> findCheckItemsByGroupId(@Param("id") Integer id);
 }

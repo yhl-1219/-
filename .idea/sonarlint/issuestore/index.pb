@@ -200,8 +200,6 @@ ahealth_service/health_member/src/main/java/com/itheima/health/service/impl/Memb
 Rhealth_service/health_mq/src/main/java/com/itheima/health/mq/EmailRedisServer.java,a/6/a61de2019fceb1089c4d7feb2b1c53ad008e649c
 „
 Thealth_service/health_mq/src/main/java/com/itheima/health/MqConsumerApplication.java,6/b/6bb60e96693b81a5ed51bd784a24f3e9c955967b
-r
-Bhealth_service/health_mq/src/main/resources/config/application.yml,d/e/dee02569af37892fcf83b04a68577113d869b384
 P
  health_service/health_mq/pom.xml,d/d/ddff86ac21a3b89aebf74fe762f776eece55661c
 „
@@ -230,7 +228,5 @@ Vhealth_service/health_security/src/main/java/com/itheima/health/mapper/UserMapp
 ahealth_service/health_security/src/main/java/com/itheima/health/service/impl/UserServiceImpl.java,d/9/d9f787ac22f6d2508b407bf392704b920746dc3e
 ˆ
 Xhealth_service/health_security/src/main/java/com/itheima/health/SecurityApplication.java,d/4/d41860c7c0c1b073037be962974bf473d42a297a
-x
-Hhealth_service/health_security/src/main/resources/config/application.yml,1/2/12215ddee9d1b959f0edd96e11e0a43a9713f4ea
 V
 &health_service/health_security/pom.xml,b/e/be5cff2ef457c30304e228014d4216214002163f

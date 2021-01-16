@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -14,7 +15,7 @@ import java.util.List;
  */
 @Data
 @TableName(value = "t_setmeal")
-//@JsonInclude(JsonInclude.Include.NON_NULL)  //  序列化 字段为null 过滤
+@JsonInclude(JsonInclude.Include.NON_NULL)  //  序列化 字段为null 过滤
 public class Setmeal implements Serializable {
 
     @TableId(value = "id",type = IdType.AUTO)
