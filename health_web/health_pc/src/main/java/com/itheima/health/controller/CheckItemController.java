@@ -38,6 +38,7 @@ public class CheckItemController {
             @ApiImplicitParam(name = "id", value = "要删除的id")
     })
     @Swagger2CommonConfiguration
+    @PreAuthorize("hasAuthority('CHECKITEM_DELETE')")
     public Result delete(@PathVariable("id") Integer id) {
         CheckItem checkItem = new CheckItem();
         checkItem.setId(id);
@@ -51,6 +52,7 @@ public class CheckItemController {
             @ApiImplicitParam(name = "checkItem", value = "包装的CheckItem对象")
     })
     @Swagger2CommonConfiguration
+    @PreAuthorize("hasAuthority('CHECKITEM_ADD') or hasAuthority('CHECKITEM_EDIT')")
     public Result add(@RequestBody CheckItem checkItem) {
         return new Result(checkItemService.saveOrUpdate(checkItem));
     }
@@ -61,6 +63,7 @@ public class CheckItemController {
             @ApiImplicitParam(name = "pageBean", value = "分页查询数据")
     })
     @Swagger2CommonConfiguration
+    @PreAuthorize("hasAuthority('CHECKITEM_QUERY')")
     public Result findPage(@RequestBody QueryPageBean pageBean) {
         return new Result(checkItemService.findPage(pageBean));
     }

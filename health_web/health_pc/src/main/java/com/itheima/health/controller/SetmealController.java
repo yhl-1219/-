@@ -15,6 +15,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.SneakyThrows;
 import org.apache.dubbo.config.annotation.Reference;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -34,6 +35,7 @@ public class SetmealController {
             @ApiImplicitParam(name = "queryPageBean", value = "分页数据")
     })
     @Swagger2CommonConfiguration
+    @PreAuthorize("hasAuthority('SETMEAL_QUERY')")
     public Result findPage(@RequestBody QueryPageBean queryPageBean) {
         return new Result(setmealService.findPage(queryPageBean));
     }
@@ -44,6 +46,7 @@ public class SetmealController {
             @ApiImplicitParam(name = "setmealDTO", value = "要新增的数据")
     })
     @Swagger2CommonConfiguration
+    @PreAuthorize("hasAuthority('SETMEAL_ADD') or hasAuthority('SETMEAL_EDIT')")
     public Result add(@RequestBody SetmealDTO setmealDTO) {
         if (!setmealDTO.getImg().equals(setmealService.getById(setmealDTO.getId()).getImg())) {
             RedisUtil.removeSetMember(RedisConstant.ALL_SETMEAL_PIC_SET, setmealDTO.getImg());
@@ -64,6 +67,7 @@ public class SetmealController {
             @ApiImplicitParam(name = "id", value = "要删除的数据的id")
     })
     @Swagger2CommonConfiguration
+    @PreAuthorize("hasAuthority('SETMEAL_DELETE')")
     public Result deleteSetmealById(@PathVariable("id") Integer id) {
         return new Result(setmealService.delete(id));
     }
@@ -84,6 +88,7 @@ public class SetmealController {
             @ApiImplicitParam(name = "file", value = "上传的文件")
     })
     @Swagger2CommonConfiguration
+    @PreAuthorize("hasAuthority('SETMEAL_ADD') or hasAuthority('SETMEAL_EDIT')")
     @SneakyThrows
     public Result upload(@RequestParam("imgFile") MultipartFile file) {
         String originalFilename = file.getOriginalFilename();

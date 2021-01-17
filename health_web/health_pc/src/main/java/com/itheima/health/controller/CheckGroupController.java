@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.dubbo.config.annotation.Reference;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -29,6 +30,7 @@ public class CheckGroupController {
             @ApiImplicitParam(name = "pageBean", value = "分页查询数据")
     })
     @Swagger2CommonConfiguration
+    @PreAuthorize("hasAuthority('CHECKGROUP_QUERY')")
     public Result findPage(@RequestBody QueryPageBean pageBean) {
         return new Result(checkGroupService.findPage(pageBean));
     }
@@ -39,6 +41,7 @@ public class CheckGroupController {
             @ApiImplicitParam(name = "checkGroupDTO", value = "多表检查组")
     })
     @Swagger2CommonConfiguration
+    @PreAuthorize("hasAuthority('CHECKGROUP_ADD') or hasAuthority('CHECKGROUP_EDIT')")
     public Result add(@RequestBody CheckGroupDTO checkGroupDTO) {
         return new Result(checkGroupService.add(checkGroupDTO));
     }
@@ -49,6 +52,7 @@ public class CheckGroupController {
             @ApiImplicitParam(name = "id", value = "要删除的id")
     })
     @Swagger2CommonConfiguration
+    @PreAuthorize("hasAuthority('CHECKGROUP_DELETE')")
     public Result delete(@PathVariable("id") Integer id) {
         return new Result(checkGroupService.deleteCheckGroupById(id));
     }
@@ -59,6 +63,7 @@ public class CheckGroupController {
             @ApiImplicitParam(name = "id", value = "要更新的检查组的id")
     })
     @Swagger2CommonConfiguration
+    @PreAuthorize("hasAuthority('CHECKITEM_QUERY')")
     public Result findCheckItemInfoByGroupId(@PathVariable("id") Integer id) {
         return new Result(checkGroupService.findCheckItemInfoByGroupId(id));
     }
@@ -66,6 +71,7 @@ public class CheckGroupController {
     @GetMapping("/findAll")
     @ApiOperation(value = "查询所有group",notes = "查询所有的检查组")
     @Swagger2CommonConfiguration
+    @PreAuthorize("hasAuthority('CHECKGROUP_QUERY')")
     public Result findAll() {
         return new Result(checkGroupService.list());
     }

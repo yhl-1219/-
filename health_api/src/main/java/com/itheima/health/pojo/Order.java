@@ -16,12 +16,12 @@ import java.util.Date;
 @Data
 @Builder
 @TableName(value = "t_order")
-public class Order implements Serializable{
+public class Order implements Serializable {
     public static final String ORDERTYPE_TELEPHONE = "电话预约";
     public static final String ORDERTYPE_WEIXIN = "微信预约";
     public static final String ORDERSTATUS_YES = "已到诊";
     public static final String ORDERSTATUS_NO = "未到诊";
-    @TableId(value = "id",type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
     @TableField(value = "MEMBER_ID")
     private Integer memberId;//会员id
@@ -34,6 +34,8 @@ public class Order implements Serializable{
     @TableField(value = "SETMEAL_ID")
     private Integer setmealId;//体检套餐id
 
+    @TableField(value = "ISPAY")
+    private Integer ispay = 0;
 
 
 }
