@@ -6,6 +6,8 @@ import java.io.Serializable;
 
 /**
  * 封装返回结果
+ * 
+ * @author wangweili 
  */
 @Data
 public class Result implements Serializable{

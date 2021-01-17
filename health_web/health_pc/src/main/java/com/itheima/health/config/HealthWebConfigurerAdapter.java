@@ -22,6 +22,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author wangweili 
+ */
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableConfigurationProperties(JwtProperties.class)
 public class HealthWebConfigurerAdapter extends WebSecurityConfigurerAdapter {
@@ -69,8 +72,8 @@ public class HealthWebConfigurerAdapter extends WebSecurityConfigurerAdapter {
                 and().
                 csrf().
                 disable().
-                addFilter(new JWTAuthenticationFilter(super.authenticationManager(), properties))
-                .addFilter(new JWTAuthorizationFilter(super.authenticationManager(), properties))
+                addFilter(new JwtAuthenticationFilter(super.authenticationManager(), properties))
+                .addFilter(new JwtAuthorizationFilter(super.authenticationManager(), properties))
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }

@@ -7,6 +7,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileInputStream;
 
+/**
+ * @author wangweili 
+ */
 public class MainPoi {
 
     public static void main(String[] args) throws Exception {

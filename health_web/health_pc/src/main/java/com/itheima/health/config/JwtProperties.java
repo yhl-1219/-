@@ -9,7 +9,9 @@ import javax.annotation.PostConstruct;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 
-
+/**
+ * @author wangweili 
+ */
 @Slf4j
 @Data
 @ConfigurationProperties(prefix = "health.jwt")

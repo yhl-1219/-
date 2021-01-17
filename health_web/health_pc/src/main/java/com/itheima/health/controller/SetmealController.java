@@ -21,6 +21,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author wangweili 
+ */
 @RestController
 @RequestMapping("/setmeal")
 @Api(tags = "传智健康预约模块之套餐项管理")

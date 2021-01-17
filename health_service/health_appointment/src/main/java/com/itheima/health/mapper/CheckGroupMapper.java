@@ -14,6 +14,12 @@ import java.util.List;
  */
 public interface CheckGroupMapper extends BaseMapper<CheckGroup> {
 
+    /**
+     * 添加中间表关系
+     *
+     * @param groupId 组名
+     * @param checkItemId 项名
+     */
     @Insert("insert into t_checkgroup_checkitem values (#{groupId},#{checkItemId})")
     void addCheckGroupAndCheckItemIds(@Param("groupId") Integer groupId,@Param("checkItemId") Integer checkItemId);
 

@@ -10,6 +10,9 @@ import org.apache.ibatis.annotations.Select;
 
 import java.util.Set;
 
+/**
+ * @author wangweili 
+ */
 public interface UserMapper extends BaseMapper<User> {
 
     @Select("select * from t_user where username = #{username}")

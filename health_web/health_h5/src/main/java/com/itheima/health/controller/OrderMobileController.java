@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
+/**
+ * @author wangweili 
+ */
 @RestController
 @Api(tags = "传智健康移动模块之预约模块")
 @RequestMapping("/order")

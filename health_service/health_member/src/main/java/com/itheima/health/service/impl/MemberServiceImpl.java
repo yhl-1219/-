@@ -13,6 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
+/**
+ * @author wangweili 
+ */
 @Service
 @Transactional
 public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> implements MemberService {
@@ -50,7 +53,7 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
                 } else {
                     s = year + "-" + (month + i);
                 }
-                count = new HashMap<String, Object>();
+                count = new HashMap<String, Object>(4);
                 count.put("name", s);
                 count.put("member", 0);
             }

@@ -7,7 +7,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author wangweili
+ */
 public interface MemberService extends IService<Member> {
+
     Member findMemberByTelephone(String telephone);
 
     int saveMember(Member member);

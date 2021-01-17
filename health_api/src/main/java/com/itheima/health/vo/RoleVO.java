@@ -8,6 +8,9 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author wangweili 
+ */
 @Data
 public class RoleVO extends Role {
 

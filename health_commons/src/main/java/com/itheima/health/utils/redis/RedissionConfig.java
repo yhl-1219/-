@@ -9,6 +9,9 @@ import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * @author wangweili 
+ */
 @Slf4j
 @Configuration
 public class RedissionConfig {

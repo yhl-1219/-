@@ -6,6 +6,8 @@ import java.util.*;
 
 /**
  * 日期操作工具类
+ * 
+ * @author wangweili 
  */
 public class DateUtils {
 
@@ -259,7 +261,12 @@ public class DateUtils {
         return c.getTime();
     }
 
-    //获得上周一的日期
+    /**
+     * 获得上周一的日期
+     * 
+     * @param date 当前日期
+     * @return 上一周日期
+     */
     public static Date geLastWeekMonday(Date date) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(getThisWeekMonday(date));
@@ -267,7 +274,12 @@ public class DateUtils {
         return cal.getTime();
     }
 
-    //获得本周一的日期
+    /**
+     * 获得本周一的日期
+     * 
+     * @param date 当前日期
+     * @return 本周一日期
+     */
     public static Date getThisWeekMonday(Date date) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -285,7 +297,12 @@ public class DateUtils {
         return cal.getTime();
     }
 
-    //获得下周一的日期
+    /**
+     * 获得下周一的日期
+     * 
+     * @param date 当前日期
+     * @return 下周一的日期
+     */
     public static Date getNextWeekMonday(Date date) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(getThisWeekMonday(date));
@@ -293,19 +310,31 @@ public class DateUtils {
         return cal.getTime();
     }
 
-    //获得今天日期
+    /**
+     * 
+     * @return 获得今天日期
+     */
     public static Date getToday() {
         return new Date();
     }
 
-    //获得本月一日的日期
+    /**
+     *
+     * @return 获得本月一日的日期
+     */
     public static Date getFirstDay4CurrentMonth() {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.DAY_OF_MONTH, 1);
         return calendar.getTime();
     }
 
-    //  获取指定年和月 的最后一天日期
+    /**
+     * 获取指定年和月的最后一天日期
+     * 
+     * @param year 年
+     * @param month 月
+     * @return 指定年月的最后一天
+     */
     public static Date getLastDayOfYearAndMonth(int year, int month) {
 //获取Calendar类的实例
         Calendar c = Calendar.getInstance();
@@ -325,7 +354,12 @@ public class DateUtils {
     }
 
 
-    //    获取传入日期所在月的最后一天
+    /**
+     * 获取传入日期所在月的最后一天
+     * 
+     * @param date 当前日期
+     * @return 当前日期所在月的最后一天
+     */
     public static Date getLastDayOfMonth(Date date) {
 
         final Calendar cal = Calendar.getInstance();
@@ -341,7 +375,12 @@ public class DateUtils {
     }
 
 
-    //    获取传入日期所在月的第一天
+    /**
+     * 获取传入日期所在月的第一天
+     * 
+     * @param date 当前日期
+     * @return 当前日期所在月的第一天
+     */
     public static Date getFirstDayDateOfMonth(Date date) {
 
         final Calendar cal = Calendar.getInstance();
@@ -357,7 +396,10 @@ public class DateUtils {
     }
 
 
-    //  获取当前过去12个月  年-月
+    /**
+     *
+     * @return 获取当前过去12个月  年-月
+     */
     public static List<String> getLast12PerMonth() {
 
         //获取日历对象
@@ -383,7 +425,10 @@ public class DateUtils {
     }
 
 
-    //  获取当前过去12个月  年-月-日
+    /**
+     * 
+     * @return 获取当前过去12个月  年-月-日
+     */
     public static List<String> getLast12FirstDatePerMonth() {
 
         //获取日历对象
@@ -409,7 +454,10 @@ public class DateUtils {
     }
 
 
-    //  获取当前过去12个月
+    /**
+     * 
+     * @return 获取当前过去12个月
+     */
     public static List<String> getLast12EndDatePerMonth() {
 
         //获取日历对象

@@ -11,10 +11,9 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 
 /**
- * @create: 2018-05-26 15:43
+ * 从磁盘中获取公钥和私钥   对信息进行加密和解密
  *
- *   从磁盘中获取公钥和私钥   对信息进行加密和解密
- *
+ * @author wangweili 
  **/
 public class JwtUtils {
 

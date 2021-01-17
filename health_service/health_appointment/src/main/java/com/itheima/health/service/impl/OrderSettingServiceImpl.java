@@ -45,11 +45,11 @@ public class OrderSettingServiceImpl extends ServiceImpl<OrderSettingMapper, Ord
         Date lastDayOfMonth = DateUtils.getLastDayOfMonth(newDate);
         String endTime = DateUtils.parseDate2String(lastDayOfMonth);
         List<OrderSetting> orderSettings = baseMapper.findSettingDataByYearAndMonth(beginTime, endTime);
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>(64);
         for (OrderSetting orderSetting : orderSettings) {
             Date orderDate = orderSetting.getOrderDate();
             String date = DateUtils.parseDate2String(orderDate);
-            HashMap orderSettingMap = new HashMap<>();
+            HashMap orderSettingMap = new HashMap<>(4);
             orderSettingMap.put("number", orderSetting.getNumber());
             orderSettingMap.put("reservations", orderSetting.getReservations());
             map.put(date, orderSettingMap);

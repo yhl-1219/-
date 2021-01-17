@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author wangweili 
+ */
 @RestController
 @Api(tags = "传智健康移动模块之套餐模块")
 @RequestMapping("/setmeal")

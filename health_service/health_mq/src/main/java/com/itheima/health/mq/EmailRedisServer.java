@@ -12,6 +12,9 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author wangweili 
+ */
 @Component
 @RabbitListener(queues = "email-queue")
 public class EmailRedisServer {

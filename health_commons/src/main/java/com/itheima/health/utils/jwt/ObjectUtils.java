@@ -2,6 +2,9 @@ package com.itheima.health.utils.jwt;
 
 import org.apache.commons.lang3.StringUtils;
 
+/**
+ * @author wangweili 
+ */
 public class ObjectUtils {
 
     public static String toString(Object obj) {

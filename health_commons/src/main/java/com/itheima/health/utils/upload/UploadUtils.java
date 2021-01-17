@@ -2,6 +2,9 @@ package com.itheima.health.utils.upload;
 
 import java.util.UUID;
 
+/**
+ * @author wangweili
+ */
 public class UploadUtils {
 	/**
 	 * 截取真实文件名
@@ -34,6 +37,6 @@ public class UploadUtils {
 		int d1 = hashCode & 0xf;
 		// 二级目录
 		int d2 = (hashCode >> 4) & 0xf;
-		return "/" + d1 + "/" + d2;// /3/4 /5/6
+		return "/" + d1 + "/" + d2;
 	}
 }

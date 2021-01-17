@@ -12,6 +12,8 @@ import java.util.Date;
 
 /**
  * 预约设置
+ * 
+ * @author wangweili 
  */
 @Data
 @TableName(value = "t_ordersetting")

@@ -9,6 +9,8 @@ import java.io.Serializable;
 
 /**
  * 角色
+ * 
+ * @author wangweili 
  */
 @Data
 @TableName(value = "t_role")

@@ -5,6 +5,9 @@ import com.itheima.health.pojo.CheckGroup;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * @author wangweili 
+ */
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class CheckGroupDTO extends CheckGroup {

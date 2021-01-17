@@ -13,6 +13,8 @@ import java.util.ResourceBundle;
 
 /**
  * 短信发送工具类
+ * 
+ * @author wangweili
  */
 public class SmsUtils {
     /**
@@ -81,10 +83,5 @@ public class SmsUtils {
         } catch (ClientException e) {
             e.printStackTrace();
         }
-    }
-
-    //1234
-    public static void main(String[] args) throws ClientException {
-        // SMSUtils.sendShortMessage("SMS_169641911","15688268846","2345");
     }
 }

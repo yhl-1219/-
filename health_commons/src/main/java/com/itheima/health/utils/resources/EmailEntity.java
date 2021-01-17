@@ -4,6 +4,9 @@ import lombok.Data;
 
 ;import java.io.Serializable;
 
+/**
+ * @author wangweili 
+ */
 @Data
 public class EmailEntity  implements Serializable {
 

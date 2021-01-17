@@ -26,12 +26,14 @@ import java.util.List;
 /**
  * 验证成功当然就是进行鉴权了
  * 登录成功之后走此类进行鉴权操作
+ * 
+ * @author wangweili
  */
-public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
+public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 
     private JwtProperties jwtProperties;
 
-    public JWTAuthorizationFilter(AuthenticationManager authenticationManager, JwtProperties jwtProperties) {
+    public JwtAuthorizationFilter(AuthenticationManager authenticationManager, JwtProperties jwtProperties) {
         super(authenticationManager);
         this.jwtProperties = jwtProperties;
     }

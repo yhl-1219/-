@@ -6,6 +6,9 @@ import com.itheima.health.pojo.Setmeal;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+/**
+ * @author wangweili 
+ */
 public interface OrderMapper extends BaseMapper<Order> {
 
     @Select("select count(1) from t_order where setmeal_id = #{setmealId} and member_id = #{memberId} and orderdate = #{orderDate}")

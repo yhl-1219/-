@@ -11,20 +11,54 @@ import java.util.Date;
 
 /**
  * 用户
+ * 
+ * @author wangweili
  */
 @Data
 @TableName(value = "t_user")
 public class User implements Serializable{
+
+    /**
+     * 主键
+     */
     @TableId(value = "id",type = IdType.AUTO)
-    private Integer id; // 主键
-    private Date birthday; // 生日
-    private String gender; // 性别
+    private Integer id;
+
+    /**
+     * 生日
+     */
+    private Date birthday;
+
+    /**
+     * 性别
+     */
+    private String gender;
+
+    /**
+     * 用户名，唯一
+     */
     @TableField(value = "USERNAME")
-    private String username; // 用户名，唯一
-    private String password; // 密码
-    private String remark; // 备注
-    private String station; // 状态
-    private String telephone; // 联系电话
+    private String username;
+
+    /**
+     * 密码
+     */
+    private String password;
+
+    /**
+     * 备注
+     */
+    private String remark;
+
+    /**
+     * 状态
+     */
+    private String station;
+
+    /**
+     * 联系电话
+     */
+    private String telephone;
 
 
 

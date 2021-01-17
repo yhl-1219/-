@@ -2,6 +2,8 @@ package com.itheima.health.utils.resources;
 
 /**
  * 消息常量    数据字典
+ * 
+ * @author wangweili 
  */
 public class MessageConstant {
     public static final String DELETE_CHECKITEM_FAIL = "删除检查项失败";

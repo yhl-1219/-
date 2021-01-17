@@ -5,6 +5,8 @@ import java.util.List;
 
 /**
  * 分页结果封装对象
+ * 
+ * @author wangweili 
  */
 public class PageResult implements Serializable {
 

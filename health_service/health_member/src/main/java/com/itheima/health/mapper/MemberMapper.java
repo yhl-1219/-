@@ -9,6 +9,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author wangweili 
+ */
 public interface MemberMapper extends BaseMapper<Member> {
     
     @Select("select concat(max(year(rpt_date.fdate)), '-', rpt_date.fmonth) as name, count(*) as member\n" +

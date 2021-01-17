@@ -21,6 +21,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author wangweili 
+ */
 @Configuration
 public class MySecurityAdaptor extends WebSecurityConfigurerAdapter {
 

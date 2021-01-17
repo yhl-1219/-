@@ -29,14 +29,14 @@ import java.util.Collection;
  * 
  * @author wangweili 
  */
-public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private AuthenticationManager authenticationManager;
 
     private JwtProperties properties;
 
 
-    public JWTAuthenticationFilter(AuthenticationManager authenticationManager, JwtProperties properties) {
+    public JwtAuthenticationFilter(AuthenticationManager authenticationManager, JwtProperties properties) {
         this.properties = properties;
         setAuthenticationManager(authenticationManager);
         this.authenticationManager = authenticationManager;

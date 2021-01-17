@@ -7,6 +7,9 @@ import com.itheima.health.entity.QueryPageBean;
 import com.itheima.health.pojo.Setmeal;
 import com.itheima.health.vo.SetmealVO;
 
+/**
+ * @author wangweili 
+ */
 public interface SetmealService extends IService<Setmeal> {
 
     boolean saveUpdate(SetmealDTO setmealDTO);

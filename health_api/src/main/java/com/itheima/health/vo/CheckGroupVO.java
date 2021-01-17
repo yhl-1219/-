@@ -7,7 +7,9 @@ import lombok.Data;
 
 import java.util.List;
 
-//  view  object
+/**
+ * @author wangweili 
+ */
 @Data
 public class CheckGroupVO extends CheckGroup {
 

@@ -7,13 +7,18 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author wangweili
+ */
 @Component
 public class DistributedRedisLock {
 
     @Resource
     private RedissonClient redissonClient;
 
-    // 加锁
+    /**
+     * 加锁
+     */
     public Boolean lock(String lockName,long timeout) {
         try {
             if (redissonClient == null) {

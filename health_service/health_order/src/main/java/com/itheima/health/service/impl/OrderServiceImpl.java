@@ -78,7 +78,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         String orderType = order.getOrderType();
         String member = memberById.getName();
         String setmeal = setmealbyId.getName();
-        HashMap<String, String> map = new HashMap<>();
+        HashMap<String, String> map = new HashMap<>(8);
         map.put("orderDate", orderDate);
         map.put("orderType", orderType);
         map.put("member", member);

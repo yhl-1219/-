@@ -8,6 +8,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+/**
+ * @author wangweili 
+ */
 public class MainPoi1 {
 
     public static void main(String[] args) throws IOException {
