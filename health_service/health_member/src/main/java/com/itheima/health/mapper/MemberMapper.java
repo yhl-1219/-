@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public interface MemberMapper extends BaseMapper<Member> {
     
@@ -17,4 +19,11 @@ public interface MemberMapper extends BaseMapper<Member> {
             "and rpt_date.fmonth = month(date_add(#{nowDate},interval +${month} month))\n" +
             "group by rpt_date.fmonth;")
     HashMap<String,Object> getMemberCount(@Param("month") Integer month, @Param("nowDate") String nowDate);
+
+    @Select("select count(t_order.SETMEAL_ID) as value, t_setmeal.name\n" +
+            "from t_setmeal,\n" +
+            "     t_order\n" +
+            "where t_setmeal.ID = t_order.SETMEAL_ID\n" +
+            "group by t_setmeal.name;")
+    List<Map<String, String>> getSetmealCount();
 }

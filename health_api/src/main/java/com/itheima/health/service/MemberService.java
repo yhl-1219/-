@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.itheima.health.pojo.Member;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public interface MemberService extends IService<Member> {
@@ -12,4 +13,6 @@ public interface MemberService extends IService<Member> {
     int saveMember(Member member);
 
     HashMap<String, Map<String, Object>> getMemberCount(Integer year,Integer month);
+
+    List<Map<String,String>> getSetmealCount();
 }

@@ -57,5 +57,10 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
         return map;
     }
 
+    @Override
+    public List<Map<String, String>> getSetmealCount() {
+        return baseMapper.getSetmealCount();
+    }
+
 
 }
