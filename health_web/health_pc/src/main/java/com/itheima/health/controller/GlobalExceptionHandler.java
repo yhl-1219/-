@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    private static final Integer SUCCESS_CODE = 200;
+
     /**
      * 异常处理
      *
@@ -20,7 +22,7 @@ public class GlobalExceptionHandler {
     public Result exceptionHandle(Exception ex) {
         ex.printStackTrace();
         String errorMsg = ex.getMessage();
-        if (errorMsg.length() > 200) {
+        if (errorMsg.length() > SUCCESS_CODE) {
             return new Result(false, errorMsg.substring(0, 200) + "...");
         } else {
             return new Result(false, errorMsg);

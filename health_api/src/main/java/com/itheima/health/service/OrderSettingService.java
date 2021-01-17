@@ -17,7 +17,7 @@ public interface OrderSettingService extends IService<OrderSetting> {
 
     boolean updateNumberByOrderDate(int number, String orderdate);
 
-    int isOrderOKorNot(String orderdate);
+    int isOrderOkOrNot(String orderdate);
 
     void updateReservationsByOrderDate(String orderdate);
 }

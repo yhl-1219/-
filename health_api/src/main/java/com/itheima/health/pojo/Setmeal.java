@@ -12,10 +12,12 @@ import java.util.List;
 
 /**
  * 体检套餐
+ * 
+ * @author wangweili
  */
 @Data
 @TableName(value = "t_setmeal")
-@JsonInclude(JsonInclude.Include.NON_NULL)  //  序列化 字段为null 过滤
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Setmeal implements Serializable {
 
     @TableId(value = "id",type = IdType.AUTO)
@@ -24,14 +26,37 @@ public class Setmeal implements Serializable {
     private String code;
     @TableField(value = "HELPCODE")
     private String helpCode;
-    private String sex;//套餐适用性别：0不限 1男 2女
-    private String age;//套餐适用年龄
-    private Float price;//套餐价格
+
+    /**
+     * 套餐适用性别：0不限 1男 2女
+     */
+    private String sex;
+
+    /**
+     * 套餐适用年龄
+     */
+    private String age;
+
+    /**
+     * 套餐价格
+     */
+    private Float price;
+
     private String remark;
+
     private String attention;
-    private String img;//套餐对应图片存储路径
-    private Integer is_delete;
+
+    /**
+     * 套餐对应图片存储路径
+     */
+    private String img;
+
+    private Integer isDelete;
+
+    /**
+     * 体检套餐对应的检查组，多对多关系
+     */
     @TableField(exist = false)
-    private List<CheckGroup> checkGroups;//体检套餐对应的检查组，多对多关系
+    private List<CheckGroup> checkGroups;
 
 }

@@ -9,6 +9,7 @@ import java.util.*;
  */
 public class DateUtils {
 
+    private static final Integer YEAR = 12;
 
     /**
      * 日期转换-  String -> Date
@@ -304,7 +305,7 @@ public class DateUtils {
         return calendar.getTime();
     }
 
-//  获取指定年和月 的最后一天日期
+    //  获取指定年和月 的最后一天日期
     public static Date getLastDayOfYearAndMonth(int year, int month) {
 //获取Calendar类的实例
         Calendar c = Calendar.getInstance();
@@ -317,7 +318,6 @@ public class DateUtils {
 
 //将获取的最大日期数设置为Calendar实例的日期数
         c.set(Calendar.DAY_OF_MONTH, lastDay);
-//获取当前月第一天c.set(Calendar.DAY_OF_MONTH, lastDay);
         Date time = c.getTime();
         String parseDate2String = parseDate2String(time, "yyyy/MM/dd");
         Date date = parseString2Date(parseDate2String, "yyyy/MM/dd");
@@ -325,8 +325,8 @@ public class DateUtils {
     }
 
 
-//    获取传入日期所在月的最后一天
-    public static Date getLastDayOfMonth( Date date) {
+    //    获取传入日期所在月的最后一天
+    public static Date getLastDayOfMonth(Date date) {
 
         final Calendar cal = Calendar.getInstance();
 
@@ -341,8 +341,7 @@ public class DateUtils {
     }
 
 
-
-//    获取传入日期所在月的第一天
+    //    获取传入日期所在月的第一天
     public static Date getFirstDayDateOfMonth(Date date) {
 
         final Calendar cal = Calendar.getInstance();
@@ -358,17 +357,16 @@ public class DateUtils {
     }
 
 
-
     //  获取当前过去12个月  年-月
-    public  static  List<String>   getLast12PerMonth (){
+    public static List<String> getLast12PerMonth() {
 
         //获取日历对象
         Calendar calendar = Calendar.getInstance();
 //设置日历往前推12个月
-        calendar.add(Calendar.MONTH,-12);
+        calendar.add(Calendar.MONTH, -12);
 
         List list = new ArrayList();
-        for(int i=0;i<12;i++){
+        for (int i = 0; i < YEAR; i++) {
 
 //获取每个月的时间
             Date time = calendar.getTime();
@@ -378,91 +376,61 @@ public class DateUtils {
             String beginDate = month;
 
             list.add(beginDate);
-            calendar.add(Calendar.MONTH,1);
+            calendar.add(Calendar.MONTH, 1);
         }
         return list;
 
     }
 
 
-
     //  获取当前过去12个月  年-月-日
-    public  static  List<String>   getLast12FirstDatePerMonth (){
+    public static List<String> getLast12FirstDatePerMonth() {
 
         //获取日历对象
         Calendar calendar = Calendar.getInstance();
 //设置日历往前推12个月
-        calendar.add(Calendar.MONTH,-12);
+        calendar.add(Calendar.MONTH, -12);
 
         List list = new ArrayList();
-        for(int i=0;i<12;i++){
+        for (int i = 0; i < YEAR; i++) {
 
 //获取每个月的时间
             Date time = calendar.getTime();
 //获取每个月的月份
             String month = new SimpleDateFormat("yyyy-MM").format(time);
 
-            String beginDate = month+"-1";
+            String beginDate = month + "-1";
 
-           list.add(beginDate);
-           calendar.add(Calendar.MONTH,1);
+            list.add(beginDate);
+            calendar.add(Calendar.MONTH, 1);
         }
-            return list;
+        return list;
 
     }
 
 
     //  获取当前过去12个月
-    public  static  List<String>   getLast12EndDatePerMonth (){
+    public static List<String> getLast12EndDatePerMonth() {
 
         //获取日历对象
         Calendar calendar = Calendar.getInstance();
 //设置日历往前推12个月
-        calendar.add(Calendar.MONTH,-12);
+        calendar.add(Calendar.MONTH, -12);
 
         List list = new ArrayList();
-        for(int i=0;i<12;i++){
+        for (int i = 0; i < YEAR; i++) {
 
 //获取每个月的时间
             Date time = calendar.getTime();
 //获取每个月的月份
             String month = new SimpleDateFormat("yyyy-MM").format(time);
 
-            String beginDate = month+"-31";
+            String beginDate = month + "-31";
 
             list.add(beginDate);
-            calendar.add(Calendar.MONTH,1);
+            calendar.add(Calendar.MONTH, 1);
         }
         return list;
-
-    }
-
-
-
-    public static void main(String[] args) throws Exception {
-//        try {
-//            System.out.println("本周一" + parseDate2String(getThisWeekMonday()));
-//            System.out.println("本月一日" + parseDate2String(getFirstDay4ThisMonth()));
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-
-//         Date date = parseString2Date("2020/1/2","yyyy/MM/dd");
-//           System.out.println(date);
-
-        System.out.println(getLast12FirstDatePerMonth());
-        System.out.println(getLast12EndDatePerMonth());
-
-
-//        Date lastDayOfMonth = getLastDayOfMonth(new Date());
-//        System.out.println(lastDayOfMonth);
-
-
-//        Date firstDayDateOfMonth = getFirstDayDateOfMonth(new Date());
-//        System.out.println(firstDayDateOfMonth);
-
-//         Date f = new Date();
-//        System.out.println(f.getDate());
 
     }
 }

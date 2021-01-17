@@ -12,23 +12,64 @@ import java.util.List;
 
 /**
  * 检查组
+ * 
+ * @author wangweili
  */
 @Data
 @TableName(value = "t_checkgroup")
-@JsonInclude(JsonInclude.Include.NON_NULL)  //  序列化 字段为null 过滤
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CheckGroup implements Serializable {
-    @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;//主键
-    private String code;//编码
-    private String name;//名称
-    @TableField(value = "HELPCODE") //  数据库字段是多个英文 查询时 会自动使用下划线拼接  需要将数据库对于的字段映射到实体类属性名上
-    private String helpCode;//助记
-    private String sex;//适用性别
-    private String remark;//介绍
-    private String attention;//注意事项
-    private Integer is_delete = 0;// 是否删除  1 表示删除  0 表示未删除  添加默认未删除
-    @TableField(exist = false) //  数据库中没有该属性对于的字段  但是实体类由于业务需要 需要集合对象
-    private List<CheckItem> checkItems;//一个检查组合包含多个检查项
 
+    /**
+     * 主键
+     */
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
+
+    /**
+     * 编码
+     */
+    private String code;
+
+    /**
+     * 名称
+     */
+    private String name;
+
+    /**
+     * 数据库字段是多个英文 查询时 会自动使用下划线拼接  需要将数据库对于的字段映射到实体类属性名上
+     */
+    @TableField(value = "HELPCODE")
+
+    /**
+     * 助记
+     */
+    private String helpCode;
+
+    /**
+     * 适用性别
+     */
+    private String sex;
+
+    /**
+     * 介绍
+     */
+    private String remark;
+
+    /**
+     * 注意事项
+     */
+    private String attention;
+
+    /**
+     * 是否删除  1 表示删除  0 表示未删除  添加默认未删除
+     */
+    private Integer isDelete = 0;
+
+    /**
+     * 数据库中没有该属性对于的字段  但是实体类由于业务需要 需要集合对象
+     */
+    @TableField(exist = false)
+    private List<CheckItem> checkItems;
 
 }

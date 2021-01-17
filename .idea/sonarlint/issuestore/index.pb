@@ -212,8 +212,6 @@ W
 '.txlcn/member-application-9092.trace.db,5/7/57c37687d10420675b6f969a26766f2e489a31c8
 m
 =health_tm/src/main/java/com/itheima/health/TMApplication.java,6/2/62f848683594f6d8ffec106e252e971e58c7626d
-c
-3health_tm/src/main/resources/application.properties,6/7/6742885a16bb6059c51927bfa845c9dd7a8bc441
 A
 health_tm/pom.xml,2/c/2cc764d0de2fedaf05043703e750e228eda07ccc
 
@@ -2412,5 +2410,11 @@ Yhealth_web/health_pc/src/main/java/com/itheima/health/config/JWTAuthenticationF
 Xhealth_web/health_pc/src/main/java/com/itheima/health/config/JWTAuthorizationFilter.java,6/b/6b73244aaf01dfae67b4ad316094556658f2e57b
 
 Ohealth_web/health_pc/src/main/java/com/itheima/health/config/JwtProperties.java,8/9/89c231946ea8d925859bcbf473691a2149eb036a
-g
-7health_web/health_pc/src/main/resources/application.yml,5/5/55b9882a5a9084c03e9d52b64ecaf1db7d68f731
+•
+ehealth_service/health_member/src/test/java/com/itheima/health/service/impl/MemberServiceImplTest.java,9/1/915ee8a168f7eda1ca1b0fa9e2835db3908b9ca6
+V
+&.txlcn/order-application-9093.trace.db,a/a/aa24bd2f37fd4e8d4a2a06d93640301bf45da6f3
+„
+Thealth_service/health_report/src/main/java/com/itheima/health/ReportApplication.java,8/c/8c20a410ed46d598f5f4a955dbf1ec76a51cf86b
+†
+Vhealth_web/health_pc/src/main/java/com/itheima/health/controller/ReportController.java,4/0/40057b0a3bcb72e8130722a82b3c7927b7147789

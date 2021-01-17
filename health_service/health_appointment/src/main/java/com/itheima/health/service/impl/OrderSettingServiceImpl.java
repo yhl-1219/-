@@ -63,7 +63,7 @@ public class OrderSettingServiceImpl extends ServiceImpl<OrderSettingMapper, Ord
     }
 
     @Override
-    public int isOrderOKorNot(String orderdate) {
+    public int isOrderOkOrNot(String orderdate) {
         QueryWrapper<OrderSetting> wrapper = new QueryWrapper<>();
         wrapper.eq("orderdate", orderdate);
         OrderSetting one = getOne(wrapper);

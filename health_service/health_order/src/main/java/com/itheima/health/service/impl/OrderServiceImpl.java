@@ -19,9 +19,14 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author wangweili
+ */
 @Service
 @Transactional
 public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements OrderService {
+    
+    private static final String SET_MEAL_ID = "setmealId";
 
     @Reference
     private OrderSettingService orderSettingService;
@@ -33,7 +38,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     public Order add(Map<String, String> map) {
         String telephone = map.get("telephone");
         String orderDate = map.get("orderDate");
-        if (orderSettingService.isOrderOKorNot(orderDate) <= 0) {
+        if (orderSettingService.isOrderOkOrNot(orderDate) <= 0) {
             throw new RuntimeException("预约已满，请选择其他日期");
         }
         Member memberFountByTelephone = memberService.findMemberByTelephone(telephone);
@@ -48,14 +53,14 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
             memberService.saveMember(memberFountByTelephone);
             memberFountByTelephone = memberService.findMemberByTelephone(telephone);
         }
-        if (baseMapper.findOrderBySetmealIdAndOrderDateAndMemberId(Integer.valueOf(map.get("setmealId")), orderDate, memberFountByTelephone.getId()) > 0) {
+        if (baseMapper.findOrderBySetmealIdAndOrderDateAndMemberId(Integer.valueOf(map.get(SET_MEAL_ID)), orderDate, memberFountByTelephone.getId()) > 0) {
             throw new RuntimeException("您已经预约过，请择日再约");
         }
         orderSettingService.updateReservationsByOrderDate(orderDate);
         Order order = Order.builder()
                 .orderDate(DateUtils.parseString2Date(orderDate))
                 .memberId(memberFountByTelephone.getId())
-                .setmealId(Integer.valueOf(map.get("setmealId")))
+                .setmealId(Integer.valueOf(map.get(SET_MEAL_ID)))
                 .orderType(map.get("orderType"))
                 .orderStatus("未到诊")
                 .build();

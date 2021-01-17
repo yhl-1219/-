@@ -46,7 +46,7 @@ public class SetmealServiceImpl extends ServiceImpl<SetmealMapper, Setmeal> impl
         baseMapper.deleteSetmealAndCheckGroupById(id);
         Setmeal setmeal = new Setmeal();
         setmeal.setId(id);
-        setmeal.setIs_delete(1);
+        setmeal.setIsDelete(1);
         updateById(setmeal);
         return true;
     }

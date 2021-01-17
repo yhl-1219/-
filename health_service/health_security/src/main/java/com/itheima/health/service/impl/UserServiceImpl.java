@@ -24,13 +24,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public UserVO findUserInfoByUsername(String username) {
         UserVO userVO = baseMapper.findUserInfoByUsername(username);
-        Set<RoleVO> roleVOSet = baseMapper.findrolesByUid(userVO.getId());
-        for (RoleVO roleVO : roleVOSet) {
+        Set<RoleVO> roleVoSet = baseMapper.findrolesByUid(userVO.getId());
+        for (RoleVO roleVO : roleVoSet) {
             Set<Permission> permssions = baseMapper.findPermssionsByRoleId(roleVO.getId());
             List<Permission> permissions = new ArrayList<>(permssions);
             roleVO.setPermissionsList(permissions);
         }
-        userVO.setRoleVOList(new ArrayList<>(roleVOSet));
+        userVO.setRoleVOList(new ArrayList<>(roleVoSet));
         return userVO;
     }
 }

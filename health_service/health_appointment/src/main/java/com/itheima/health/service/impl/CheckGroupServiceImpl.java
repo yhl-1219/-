@@ -53,7 +53,7 @@ public class CheckGroupServiceImpl extends ServiceImpl<CheckGroupMapper, CheckGr
         baseMapper.deleteCheckGroupAndCheckItemIdsById(id);
         CheckGroup checkGroup = new CheckGroup();
         checkGroup.setId(id);
-        checkGroup.setIs_delete(1);
+        checkGroup.setIsDelete(1);
         updateById(checkGroup);
         return true;
     }

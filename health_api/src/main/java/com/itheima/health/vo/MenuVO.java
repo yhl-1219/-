@@ -7,9 +7,15 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author wangweili 
+ */
 @Data
 public class MenuVO extends Menu {
 
-    private List<MenuVO> children = new ArrayList<MenuVO>();//子菜单集合
+    /**
+     * 子菜单集合
+     */
+    private List<MenuVO> children = new ArrayList<>();
 
 }

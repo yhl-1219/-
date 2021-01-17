@@ -16,6 +16,8 @@ import java.util.*;
 @Service
 @Transactional
 public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> implements MemberService {
+    
+    private static final Integer ONE_YEAR = 12;
 
     @Override
     public Member findMemberByTelephone(String telephone) {
@@ -37,13 +39,13 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
         HashMap<String, Map<String, Object>> map = new HashMap<>(18);
         Integer nowYear = 0;
         Integer nowMonth = 0;
-        for (int i = 0; i < 12; i++) {
+        for (int i = 0; i < ONE_YEAR; i++) {
             Map<String, Object> count = baseMapper.getMemberCount(i, nowDate);
             String s = "";
             if (count == null) {
-                if (month + i > 12) {
+                if (month + i > ONE_YEAR) {
                     nowYear = year + 1;
-                    nowMonth = month + i - 12;
+                    nowMonth = month + i - ONE_YEAR;
                     s = nowYear + "-" + nowMonth;
                 } else {
                     s = year + "-" + (month + i);

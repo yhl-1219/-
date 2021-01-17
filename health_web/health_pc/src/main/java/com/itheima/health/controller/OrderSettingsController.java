@@ -3,14 +3,13 @@ package com.itheima.health.controller;
 import com.itheima.health.config.Swagger2CommonConfiguration;
 import com.itheima.health.entity.Result;
 import com.itheima.health.service.OrderSettingService;
-import com.itheima.health.utils.poi.POIUtils;
+import com.itheima.health.utils.poi.PoiUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.SneakyThrows;
 import org.apache.dubbo.config.annotation.Reference;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -35,7 +34,7 @@ public class OrderSettingsController {
     @Swagger2CommonConfiguration
     @SneakyThrows
     public Result importOrderSettings(@RequestParam("excelFile") MultipartFile multipartFile) {
-        List<String[]> orderSettingList = POIUtils.readExcel(multipartFile);
+        List<String[]> orderSettingList = PoiUtils.readExcel(multipartFile);
         orderSettingService.importOrderSettings(orderSettingList);
         return new Result(true);
     }

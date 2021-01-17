@@ -45,8 +45,8 @@ public class SendSms {
             req.setSmsSdkAppid(appid);
             String sign = "卷书成船";
             req.setSign(sign);
-            String templateID = "844026";
-            req.setTemplateID(templateID);
+            String templateId = "844026";
+            req.setTemplateID(templateId);
             String[] phoneNumbers = {"+86" + telephone};
             req.setPhoneNumberSet(phoneNumbers);
             int o = new Random().nextInt(900000) + 100000;
@@ -77,8 +77,8 @@ public class SendSms {
             req.setSmsSdkAppid(appid);
             String sign = "卷书成船";
             req.setSign(sign);
-            String templateID = "844027";
-            req.setTemplateID(templateID);
+            String templateId = "844027";
+            req.setTemplateID(templateId);
             String[] phoneNumbers = {"+86" + telephone};
             req.setPhoneNumberSet(phoneNumbers);
             String[] templateParams = {};
@@ -86,10 +86,10 @@ public class SendSms {
             SendSmsResponse res = client.SendSms(req);
             System.out.println(SendSmsResponse.toJsonString(res));
             System.out.println(res.getRequestId());
+            return true;
         } catch (TencentCloudSDKException e) {
             e.printStackTrace();
-        } finally {
-            return true;
+            return false;
         }
     }
 }

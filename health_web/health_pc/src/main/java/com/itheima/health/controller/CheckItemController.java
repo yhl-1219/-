@@ -42,7 +42,7 @@ public class CheckItemController {
     public Result delete(@PathVariable("id") Integer id) {
         CheckItem checkItem = new CheckItem();
         checkItem.setId(id);
-        checkItem.setIs_delete(1);
+        checkItem.setIsDelete(1);
         return new Result(checkItemService.updateById(checkItem));
     }
 

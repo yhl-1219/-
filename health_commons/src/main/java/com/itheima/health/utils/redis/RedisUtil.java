@@ -8,17 +8,32 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author wangweili
+ */
 public class RedisUtil {
 
+    private RedisUtil() {
+    }
+
+    /**
+     * SpringBoot redis操作类
+     */
     private static RedisTemplate<String, Object> redisTemplate;
 
+    /**
+     * 分布式锁
+     */
     private static DistributedRedisLock distributedRedisLock;
 
     public static void registerLock(DistributedRedisLock lock) {
         distributedRedisLock = lock;
     }
 
-    private static int DETAULT_TIME_OUT = -1;
+    /**
+     * 默认超时时间
+     */
+    private static final int DEFAULT_TIME_OUT = -1;
 
     public static void register(RedisTemplate<String, Object> template) {
         redisTemplate = template;
@@ -32,7 +47,7 @@ public class RedisUtil {
     }
 
     public static void set(String key, Object value) {
-        set(key, value, DETAULT_TIME_OUT);
+        set(key, value, DEFAULT_TIME_OUT);
     }
 
     public static void set(String key, Object value, long timeout) {
@@ -51,10 +66,11 @@ public class RedisUtil {
             int tryCount = 0;
             while (obj == null && tryCount <= 3) {
                 tryCount++;
-                if (timeout > 0)
+                if (timeout > 0) {
                     redisTemplate.opsForValue().set(key, value, timeout, timeUnit);
-                else
+                } else {
                     redisTemplate.opsForValue().set(key, value);
+                }
                 obj = redisTemplate.opsForValue().get(key);
             }
             if (obj == null) {
