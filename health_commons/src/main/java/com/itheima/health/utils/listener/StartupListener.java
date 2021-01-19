@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 /**
  * spring ioc容器初始化完成后自动执行
  * 一般用于项目初始化
- * 
+ *
  * @author wangweili
  */
 @Slf4j
@@ -21,15 +21,19 @@ import javax.annotation.Resource;
 public class StartupListener implements ApplicationListener<ContextRefreshedEvent> {
 
     @Resource
-    private RedisTemplate<String,Object> redisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
 
     @Resource
     private DistributedRedisLock distributedRedisLock;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        log.info("=========redis=========");
-        RedisUtil.register(redisTemplate);
-        RedisUtil.registerLock(distributedRedisLock);
+        try {
+            RedisUtil.register(redisTemplate);
+            RedisUtil.registerLock(distributedRedisLock);
+            log.info("=========redis=========");
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
     }
 }

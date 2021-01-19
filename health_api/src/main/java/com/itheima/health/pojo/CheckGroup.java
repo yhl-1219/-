@@ -17,7 +17,6 @@ import java.util.List;
  */
 @Data
 @TableName(value = "t_checkgroup")
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CheckGroup implements Serializable {
 
     /**

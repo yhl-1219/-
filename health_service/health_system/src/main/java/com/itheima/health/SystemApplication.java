@@ -1,19 +1,18 @@
 package com.itheima.health;
 
-import lombok.extern.slf4j.Slf4j;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * @author wangweili 
+ * @author wangweili
  */
-@Slf4j
 @SpringBootApplication
-public class PcApplication {
+@MapperScan("com.itheima.health.mapper")
+public class SystemApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(PcApplication.class, args);
-        log.info("===PC端启动===");
+        SpringApplication.run(SystemApplication.class, args);
     }
 
 }

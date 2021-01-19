@@ -1,6 +1,7 @@
 package com.itheima.health.utils.redis;
 
 import com.alibaba.fastjson.support.spring.FastJsonRedisSerializer;
+import com.alibaba.fastjson.support.spring.GenericFastJsonRedisSerializer;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
@@ -38,7 +39,8 @@ public class RedisUtil {
     public static void register(RedisTemplate<String, Object> template) {
         redisTemplate = template;
         redisTemplate.setKeySerializer(new StringRedisSerializer());
-        redisTemplate.setValueSerializer(new FastJsonRedisSerializer<>(Object.class));
+        redisTemplate.setValueSerializer(new GenericFastJsonRedisSerializer());
+        //FastJsonRedisSerializer<>(Object.class)
         redisTemplate.setEnableTransactionSupport(true);
     }
 

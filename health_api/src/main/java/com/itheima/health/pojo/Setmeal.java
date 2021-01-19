@@ -17,7 +17,6 @@ import java.util.List;
  */
 @Data
 @TableName(value = "t_setmeal")
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Setmeal implements Serializable {
 
     @TableId(value = "id",type = IdType.AUTO)

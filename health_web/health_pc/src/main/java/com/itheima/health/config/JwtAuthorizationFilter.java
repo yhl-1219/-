@@ -58,7 +58,9 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 
     }
 
-    // 这里从token中获取用户信息并新建一个token
+    /**
+     * 这里从token中获取用户信息并新建一个token
+     */
     private UsernamePasswordAuthenticationToken getAuthentication(String tokenHeader,HttpServletResponse response) throws IOException {
         String token = tokenHeader.replace(JwtUtils.TOKEN_PREFIX, "");
         ServletOutputStream out = response.getOutputStream();
@@ -71,7 +73,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
             if (username != null) {
                 String[] roles1 = userInfo.getRoles().split("-");
                 List<String> list = Arrays.asList(roles1);
-                List<GrantedAuthority> listRoles = new ArrayList<GrantedAuthority>();
+                List<GrantedAuthority> listRoles = new ArrayList<>();
                 for (String s : list) {
                     listRoles.add(new SimpleGrantedAuthority(s));
                 }

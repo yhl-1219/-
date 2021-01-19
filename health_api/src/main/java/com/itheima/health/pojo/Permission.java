@@ -34,6 +34,4 @@ public class Permission implements Serializable{
      */
     private String description;
 
-
-
 }

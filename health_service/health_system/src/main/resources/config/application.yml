@@ -1,0 +1,10 @@
+#业务应用配置  优先加载，可以重写 health_core 配置文件信息
+server:
+  port: 9097
+spring:
+  application:
+    name: system-application #应用名称
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true

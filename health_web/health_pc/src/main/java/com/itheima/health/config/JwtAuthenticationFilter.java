@@ -5,6 +5,7 @@ import com.itheima.health.entity.Result;
 import com.itheima.health.pojo.User;
 import com.itheima.health.utils.jwt.JwtUtils;
 import com.itheima.health.utils.jwt.UserInfo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -26,9 +27,10 @@ import java.util.Collection;
  * 该类继承自UsernamePasswordAuthenticationFilter，重写了其中的2个方法 ,
  * attemptAuthentication：接收并解析用户凭证。
  * successfulAuthentication：用户成功登录后，这个方法会被调用，我们在这个方法里生成token并返回。
- * 
- * @author wangweili 
+ *
+ * @author wangweili
  */
+@Slf4j
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private AuthenticationManager authenticationManager;
@@ -41,17 +43,26 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         setAuthenticationManager(authenticationManager);
         this.authenticationManager = authenticationManager;
         super.setFilterProcessesUrl("/login");
-        System.out.println("filter===" + authenticationManager + "---");
+        log.info("filter===" + authenticationManager + "===");
     }
 
-
+    /**
+     * 认证
+     *
+     * @param request  解析前端的数据
+     * @param response 响应
+     * @return 返回响应
+     * @throws AuthenticationException AuthenticationException
+     */
     @Override
-    public Authentication attemptAuthentication(HttpServletRequest request,
-                                                HttpServletResponse response) throws AuthenticationException {
+    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
 
         // 从输入流中获取到登录的信息
         try {
-            JSONObject jsonObject = new JSONObject();  //   前端 发送 json 对象  username  password
+            /**
+             * 前端 发送 json 对象  username  password
+             */
+            JSONObject jsonObject = new JSONObject();
             User loginUser = JSONObject.parseObject(request.getInputStream(), User.class);
 
             return authenticationManager.authenticate(
@@ -73,14 +84,22 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         }
     }
 
-    // 成功验证后调用的方法
-    // 如果验证成功，就生成token并返回
+    /**
+     * 成功验证后调用的方法,如果验证成功，就生成token并返回
+     *
+     * @param request    请求
+     * @param response   响应
+     * @param chain      过滤器链
+     * @param authResult 权限结果
+     * @throws IOException      IOException
+     * @throws ServletException ServletException
+     */
     @Override
     public void successfulAuthentication(HttpServletRequest request,
                                          HttpServletResponse response,
                                          FilterChain chain,
                                          Authentication authResult) throws IOException, ServletException {
-        //  认证成功 我们需要将用户信息 生成token   发送给客户端
+        //认证成功 我们需要将用户信息 生成token   发送给客户端
         org.springframework.security.core.userdetails.User jwtUser = (org.springframework.security.core.userdetails.User) authResult.getPrincipal();
         Collection<GrantedAuthority> authorities = jwtUser.getAuthorities();
         GrantedAuthority[] objects = authorities.toArray(new GrantedAuthority[]{});
@@ -104,10 +123,11 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         response.setContentType("application/json; charset=utf-8");
         Result errorInfoDTO = new Result();
         try {
-            //  使用私钥  加密 生成 token  返回给浏览器 以header形式发送
+            //使用私钥  加密 生成 token  返回给浏览器 以header形式发送
             token = JwtUtils.generateToken(userInfo, privateKey, 60 * 24);
             String tokenStr = JwtUtils.TOKEN_PREFIX + token;
-            response.setHeader(JwtUtils.TOKEN_NAME, tokenStr); //  header形式 发送给客户端浏览器
+            //header形式 发送给客户端浏览器
+            response.setHeader(JwtUtils.TOKEN_NAME, tokenStr);
             errorInfoDTO.setFlag(true);
             errorInfoDTO.setStatus(200);
             errorInfoDTO.setMessage(tokenStr);
@@ -121,6 +141,15 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         response.getWriter().print(s);
     }
 
+    /**
+     * 验证失败后调用的方法
+     *
+     * @param request
+     * @param response
+     * @param failed
+     * @throws IOException
+     * @throws ServletException
+     */
     @Override
     public void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
         response.setStatus(403);

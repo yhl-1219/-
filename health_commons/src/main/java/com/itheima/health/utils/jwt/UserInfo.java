@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
- * @author wangweili 
+ * @author wangweili
  */
 @Data
 @NoArgsConstructor
@@ -18,7 +18,7 @@ public class UserInfo {
 
     private String password;
 
-     private String roles;
+    private String roles;
 
     public UserInfo(Long id, String username, String roles) {
         this.id = id;

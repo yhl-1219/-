@@ -15,7 +15,6 @@ import java.io.Serializable;
  */
 @TableName(value = "t_checkitem")
 @Data
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CheckItem implements Serializable {
 
     /**

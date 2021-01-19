@@ -45,9 +45,7 @@ public class DateUtils {
             return null;
         }
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat(pattern);
-            Date date = sdf.parse(dateString);
-            return date;
+            return new SimpleDateFormat(pattern).parse(dateString);
         } catch (ParseException e) {
             e.printStackTrace();
             throw new RuntimeException("传入字符串必须：yyyy/MM/dd");

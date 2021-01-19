@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author wangweili 
+ * @author wangweili
  */
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableConfigurationProperties(JwtProperties.class)
@@ -58,21 +58,17 @@ public class HealthWebConfigurerAdapter extends WebSecurityConfigurerAdapter {
                 for (Permission permission : permissions) {
                     userList.add(new SimpleGrantedAuthority(permission.getKeyword()));
                 }
-
-            };
+            }
             return new User(user.getUsername(), user.getPassword(), userList);
         };
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.
-                formLogin().
-                loginProcessingUrl("/login").
-                and().
-                csrf().
-                disable().
-                addFilter(new JwtAuthenticationFilter(super.authenticationManager(), properties))
+        http
+                .csrf()
+                .disable()
+                .addFilter(new JwtAuthenticationFilter(super.authenticationManager(), properties))
                 .addFilter(new JwtAuthorizationFilter(super.authenticationManager(), properties))
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);

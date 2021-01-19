@@ -13,7 +13,14 @@ import java.util.Map;
  * @author wangweili 
  */
 public interface MemberMapper extends BaseMapper<Member> {
-    
+
+    /**
+     * 根据起始月份以及推移数推算月份
+     *
+     * @param month 月份偏移量
+     * @param nowDate 起始月份
+     * @return example:<"2020-8",4>
+     */
     @Select("select concat(max(year(rpt_date.fdate)), '-', rpt_date.fmonth) as name, count(*) as member\n" +
             "from rpt_date,\n" +
             "     t_member\n" +
@@ -23,6 +30,11 @@ public interface MemberMapper extends BaseMapper<Member> {
             "group by rpt_date.fmonth;")
     HashMap<String,Object> getMemberCount(@Param("month") Integer month, @Param("nowDate") String nowDate);
 
+    /**
+     * 根据分类计订单总数
+     *
+     * @return 订单名、数量的List集合
+     */
     @Select("select count(t_order.SETMEAL_ID) as value, t_setmeal.name\n" +
             "from t_setmeal,\n" +
             "     t_order\n" +
