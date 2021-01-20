@@ -8,20 +8,21 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 用户
- * 
+ *
  * @author wangweili
  */
 @Data
 @TableName(value = "t_user")
-public class User implements Serializable{
+public class User implements Serializable {
 
     /**
      * 主键
      */
-    @TableId(value = "id",type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     /**
@@ -33,6 +34,9 @@ public class User implements Serializable{
      * 性别
      */
     private String gender;
+
+    @TableField(exist = false)
+    private String date;
 
     /**
      * 用户名，唯一
@@ -60,6 +64,7 @@ public class User implements Serializable{
      */
     private String telephone;
 
-
+    @TableField(exist = false)
+    private List<Integer> roleIds;
 
 }

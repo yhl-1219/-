@@ -1,6 +1,5 @@
 package com.itheima.health.controller;
 
-import com.itheima.health.config.RabbitMqConfig;
 import com.itheima.health.config.Swagger2CommonConfiguration;
 import com.itheima.health.entity.Result;
 import com.itheima.health.pojo.Setmeal;
@@ -70,7 +69,7 @@ public class SetmealMobileController {
             @ApiImplicitParam(name = "telephone", value = "电话号码")})
     @Swagger2CommonConfiguration
     public Result generateCode(@PathVariable("telephone") String telephone) {
-        rabbitTemplate.convertAndSend(RabbitMqConfig.TEST_EXCHANGE, "email-key", telephone);
+        rabbitTemplate.convertAndSend("health_appointment_exchange", "email-key", telephone);
         return new Result(true);
     }
 

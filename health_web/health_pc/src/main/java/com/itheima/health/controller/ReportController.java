@@ -1,6 +1,7 @@
 package com.itheima.health.controller;
 
 import com.itheima.health.config.Swagger2CommonConfiguration;
+import com.itheima.health.entity.ReportMemberCondition;
 import com.itheima.health.entity.Result;
 import com.itheima.health.service.MemberService;
 import io.swagger.annotations.Api;
@@ -10,7 +11,9 @@ import io.swagger.annotations.ApiOperation;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -24,16 +27,14 @@ public class ReportController {
     @Reference
     private MemberService memberService;
 
-    @PostMapping("/getMemberCount/{year}/{month}")
+    @PostMapping("/getMemberCount")
     @ApiOperation(value = "计算月份", notes = "通过year和month计算会员注册数")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "year", value = "年"),
-            @ApiImplicitParam(name = "month", value = "月份")
+
     })
     @Swagger2CommonConfiguration
-    public Result getMemberCount(@PathVariable("year") Integer year, @PathVariable("month") Integer month) {
-        HashMap<String, Map<String, Object>> map = memberService.getMemberCount(year, month);
-        return new Result(map);
+    public Result getMemberCount(@RequestBody ReportMemberCondition condition) {
+        return new Result(memberService.getMemberCount(condition));
     }
 
     @PostMapping("/getSetmealCount")
