@@ -2,6 +2,7 @@ package com.itheima.health.controller;
 
 import com.itheima.health.config.Swagger2CommonConfiguration;
 import com.itheima.health.entity.Result;
+import com.itheima.health.pojo.Order;
 import com.itheima.health.service.OrderService;
 import com.itheima.health.utils.redis.RedisUtil;
 import com.itheima.health.utils.resources.MessageConstant;
@@ -12,12 +13,19 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.dubbo.config.annotation.Reference;
+import org.springframework.amqp.AmqpException;
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.core.MessageDeliveryMode;
+import org.springframework.amqp.core.MessagePostProcessor;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author wangweili 
+ * @author wangweili
  */
 @RestController
 @Api(tags = "传智健康移动模块之预约模块")
@@ -25,6 +33,9 @@ import java.util.Map;
 public class OrderMobileController {
 
     private static final String VALIDATE_CODE = "validateCode";
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     @Reference
     private OrderService orderService;
@@ -58,7 +69,19 @@ public class OrderMobileController {
             return new Result(false, MessageConstant.VALIDATE_CODE_ERROR);
         }
         RedisUtil.delete(RedisMessageConstant.SENDTYPE_ORDER + telephone);
-        return new Result(orderService.add(map));
+        Order order = orderService.add(map);
+        if (order != null) {
+            Integer oid = order.getId();
+            Map<String, String> mes = new HashMap();
+            mes.put("oid", oid + "");
+            mes.put("telephone", telephone);
+            rabbitTemplate.convertAndSend("order_exchange", "", mes, var -> {
+                var.getMessageProperties().setDeliveryMode(MessageDeliveryMode.PERSISTENT);
+                var.getMessageProperties().setExpiration("30000");
+                return var;
+            });
+        }
+        return new Result(order);
     }
 
     @PostMapping("/search/{id}")

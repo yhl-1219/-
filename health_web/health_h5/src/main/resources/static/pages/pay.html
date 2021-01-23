@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,user-scalable=no,minimal-ui">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../img/asset-favico.ico">
+    <title>预约须知</title>
+    <link rel="stylesheet" href="../css/page-health-orderNotice.css"/>
+    <script src="../plugins/jquery/dist/jquery.min.js"></script>
+    <script src="../plugins/healthmobile.js"></script>
+    <script src="../plugins/vue/vue.js"></script>
+    <script src="../plugins/vue/axios-0.18.0.js"></script>
+    <script src="../plugins/elementui/index.js"></script>
+
+    <script>
+        var id = getUrlParam("id");
+        var price = getUrlParam("price");
+    </script>
+
+    <!--<link rel="stylesheet" href="../css/wxPay/pages-weixinpay.css">-->
+    <!--<link rel="stylesheet" href="../css/wxPay/webbase.css">-->
+    <script src="../js/qrcode.js"></script>
+
+</head>
+<body data-spy="scroll" data-target="#myNavbar" data-offset="150">
+<div id="app" class="app">
+    <!-- 页面头部 -->
+    <div class="top-header">
+        <span class="f-left"><i class="icon-back" onclick="history.go(-1)"></i></span>
+        <span class="center">传智健康</span>
+        <span class="f-right"><i class="icon-more"></i></span>
+    </div>
+    <!-- 页面内容 -->
+    <div class="contentBox">
+        <div class="notice-article">
+            <div class="info-title">
+                <span class="name">支付页面</span>
+            </div>
+            <div class="notice-item">
+                <!--<div class="item-title">注意事项</div>-->
+                <div class="item-content">
+                    <div class="checkout py-container  pay">
+                        <div class="checkout-tit">
+                            <h4 class="fl tit-txt"><span class="success-icon"></span><span
+                                    class="success-info">订单提交成功，请您及时付款！</span></h4>
+                            <span class="fr"><em class="sui-lead">应付金额：￥</em><em id="price" class="orange money"></em>元</span>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="checkout-steps">
+                            <div class="fl weixin">微信支付</div>
+                            <div class="fl sao">
+                                <!--<p class="red" style="padding-bottom: 40px">二维码已过期，刷新页面重新获取二维码。</p>-->
+                                <div class="fl code">
+                                    <div id="qrCode" ref="qrCode" style="width:150px;height:150px"></div>
+                                    <!--<script>-->
+                                        <!--let qrCode = new QRCode(document.getElementById("qrCode"), {-->
+                                            <!--text: "http://www.baidu.com",-->
+                                            <!--width: 128,-->
+                                            <!--height: 128,-->
+                                            <!--// colorDark : "#000000",-->
+                                            <!--// colorLight : "#ffffff",-->
+                                            <!--correctLevel: QRCode.CorrectLevel.H-->
+                                        <!--});-->
+                                    <!--</script>-->
+                                    <div class="saosao">
+                                        <p>请使用微信扫一扫</p>
+                                        <p>扫描二维码支付</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    window.onload=function(){
+        var url ;
+        // let id = "002";
+        // let price = "200";
+        $("#price").html(price);
+        // document.getElementById("price").value(price);
+        axios.post("/pay/getPayCodeInfo",{"oid":id,"price":price}).then((res)=>{
+            url=res.data.data.pay_url;
+            generateCode(url);
+        });
+
+    };
+
+    // 每间隔五秒查询支付状态
+    setInterval(function () {
+        // 发送ajax请求
+        let data = 'action=findState&oid=${oid}';
+        axios.post("/pay/findState/"+id).then((res)=>{
+            if (res.data.data) {
+                // 支付成功了
+                location.href='../pages/pay_success.html';
+            }
+        })
+    },1000);
+    //生成二维码
+    function generateCode(url){
+        document.getElementById("qrCode").innerHTML="";
+        let qrCode = new QRCode(document.getElementById("qrCode"), {
+            text: url,
+            width: 128,
+            height: 128,
+            // colorDark : "#000000",
+            // colorLight : "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+    }
+
+
+    // 如果用户迟迟没有支付... 帅哥课上演示30秒
+    setTimeout(function () {
+        location.href='${pageContext.request.contextPath}/pay_fail.jsp';
+    },30000);
+</script>
+
+
+
+
+</html>

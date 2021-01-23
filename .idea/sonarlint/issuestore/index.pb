@@ -308,8 +308,6 @@ t
 Dhealth_web/health_h5/src/main/resources/static/fonts/health-icon.svg,4/4/44bfad958c5fb38c0a8c1b806fccae3d7ee75642
 z
 Jhealth_web/health_h5/src/main/resources/static/pages/checkrecord_list.html,7/a/7a93310102a0ea472d95638826c7a6d45dc78bee
-v
-Fhealth_web/health_h5/src/main/resources/static/pages/orderSuccess.html,1/7/176197def727b40cb8bbc4eec5331a60176c0165
 q
 Ahealth_web/health_h5/src/main/resources/static/pages/setmeal.html,7/5/75ae47691408d0929cd6b46d7a007f8a9f2677c9
 x
@@ -2386,8 +2384,6 @@ z
 Jhealth_web/health_h5/src/main/resources/static/plugins/vue/axios-0.18.0.js,f/d/fd4fab997250c28b448aeb8d9730c90dc1b3a8ff
 q
 Ahealth_web/health_h5/src/main/resources/static/plugins/vue/vue.js,b/5/b5860e58a52de9164d21818cff0ea2cced078e57
-v
-Fhealth_web/health_h5/src/main/resources/static/plugins/healthmobile.js,8/4/8499282845589cc7fc185ead78f0e9cf4a92181d
 r
 Bhealth_web/health_h5/src/main/resources/static/plugins/rainbow.css,b/c/bcb16adc2c7131a37d7d9c6da8c39186427f1153
 |

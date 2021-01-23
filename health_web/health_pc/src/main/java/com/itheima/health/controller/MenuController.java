@@ -29,7 +29,6 @@ public class MenuController {
     })
     @Swagger2CommonConfiguration
     @PostMapping("/findAllMenuByUsername/{username}")
-    @PreAuthorize("hasAuthority('MENU_QUERY')")
     public Result findAllMenu(@PathVariable("username") String username) {
         Map map = menuService.findAllMenuByUsername(username);
         return new Result(map);
@@ -43,7 +42,6 @@ public class MenuController {
     })
     @PostMapping("/findPage")
     @Swagger2CommonConfiguration
-    @PreAuthorize("hasAuthority('MENU_QUERY')")
     public Result findPage(@RequestBody QueryPageBean pageBean) {
         return new Result(menuService.findPage(pageBean));
     }

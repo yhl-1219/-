@@ -1,5 +1,6 @@
 package com.itheima.health.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.itheima.health.mapper.OrderMapper;
 import com.itheima.health.pojo.Member;
@@ -9,7 +10,9 @@ import com.itheima.health.service.MemberService;
 import com.itheima.health.service.OrderService;
 import com.itheima.health.service.OrderSettingService;
 import com.itheima.health.utils.date.DateUtils;
+import com.itheima.health.utils.resources.PayConstant;
 import lombok.SneakyThrows;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.dubbo.config.annotation.Reference;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -78,12 +81,39 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         String orderType = order.getOrderType();
         String member = memberById.getName();
         String setmeal = setmealbyId.getName();
+        String price = String.valueOf(setmealbyId.getPrice());
         HashMap<String, String> map = new HashMap<>(8);
         map.put("orderDate", orderDate);
         map.put("orderType", orderType);
         map.put("member", member);
         map.put("setmeal", setmeal);
+        map.put("price",price);
         return map;
+    }
+
+    @Override
+    public Boolean updateState(Map param) {
+        // 1.获取订单号
+        String id = (String) param.get("out_trade_no");
+
+        String oid = StringUtils.remove(id, PayConstant.ORDER_ID_PREFIX);
+        // 2.修改订单状态
+        UpdateWrapper<Order> wrapper = new UpdateWrapper<>();
+        wrapper.eq("id", oid);
+        wrapper.set("ispay", 1);
+        return update(wrapper);
+
+    }
+
+    @Override
+    public Boolean findOrderStateById(Integer oid) {
+        int state = baseMapper.findOrderStateById(oid);
+        return state==1;
+    }
+
+    @Override
+    public void updateReservationsByOrderDate(Integer id) {
+        baseMapper.updateReservationsByOrderDate(id);
     }
 
 }

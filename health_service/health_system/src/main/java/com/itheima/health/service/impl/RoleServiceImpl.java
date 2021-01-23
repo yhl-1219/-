@@ -59,6 +59,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
     public boolean addOrUpdateRole(Role role) {
         if (role.getId() != null) {
             baseMapper.deletePermissionByRoleId(role.getId());
+            baseMapper.deleteMenuByRoleId(role.getId());
         }
         saveOrUpdate(role);
         List<Integer> permissionIds = role.getPermissionIds();

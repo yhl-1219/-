@@ -15,4 +15,10 @@ public interface OrderService extends IService<Order> {
 
     Map findOrderInfoById(int id);
 
+    Boolean updateState(Map param);
+
+    Boolean findOrderStateById(Integer oid);
+
+    void updateReservationsByOrderDate(Integer id);
+
 }

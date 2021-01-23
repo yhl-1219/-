@@ -38,5 +38,8 @@ public interface RoleMapper extends BaseMapper<Role> {
 
     @Insert("insert into t_role_menu values (#{roleId},#{menuId})")
     void insertMenuByRoleIdAndMenuId(@Param("roleId") Integer roleId, @Param("menuId") Integer menuId);
+
+    @Delete("delete from t_role_menu where t_role_menu.ROLE_ID = #{id}")
+    void deleteMenuByRoleId(@Param("id") Integer id);
     
 }

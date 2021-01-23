@@ -15,6 +15,7 @@
     <script src="../plugins/healthmobile.js"></script>
     <script src="../plugins/vue/vue.js"></script>
     <script src="../plugins/vue/axios-0.18.0.js"></script>
+    <script src="../plugins/elementui/index.js"></script>
     <script>
         var id = getUrlParam("id");
     </script>
@@ -40,6 +41,7 @@
                     <p>体检套餐：{{orderInfo.setmeal}}</p>
                     <p>体检日期：{{orderInfo.orderDate}}</p>
                     <p>预约类型：{{orderInfo.orderType}}</p>
+                    <p>套餐价格：{{orderInfo.price}}元</p>
                 </div>
             </div>
             <div class="notice-item">
@@ -56,8 +58,30 @@
                     <p>9、积极配合医师的检查，保持良好的心态，告知医师自己的真实情况，有助于医师帮助判断身体健康状况。</p>
                 </div>
             </div>
+            <div class="box-button">
+                <el-button @click="pay()" type="button" class="btn order-btn">支付</el-button>
+            </div>
+            距离支付失效剩余<span id="shijian">15</span>s
         </div>
     </div>
+    <script>
+        var shijian=15;
+        var time=null;
+        function start(){
+            time=setInterval("count()",1000);//返回值time只是为了需要暂停的时候clearInterval(time)清除时间间隔
+        }
+        window.onload = start();
+        function count(){
+            if(shijian<0){
+                window.location.href = "pay_fail.html";
+            }else{
+                $("#time p").html(Math.floor(shijian/60)+":"+shijian%60);//这里用到将毫秒转换到时分格式
+                $("#shijian").html(Math.floor(shijian));
+                shijian--;
+                console.info(shijian);
+            }
+        }
+    </script>
 </div>
 </body>
 <script>
@@ -74,6 +98,11 @@
                     this.$message.error(res.data.message);
                 }
             })
+        },
+        methods: {
+            pay() {
+                window.location.href = "pay.html?id=" + id + "&price=" + this.orderInfo.price;
+            }
         }
     });
 </script>
