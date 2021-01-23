@@ -9,15 +9,11 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.dubbo.config.annotation.Reference;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 /**
- * @author wangweili 
+ * @author wangweili
  */
 @RestController
 @RequestMapping("/report")
@@ -30,9 +26,12 @@ public class ReportController {
     @PostMapping("/getMemberCount")
     @ApiOperation(value = "计算月份", notes = "通过year和month计算会员注册数")
     @ApiImplicitParams({
-
+            @ApiImplicitParam(name = "beginTime", value = "起始时间"),
+            @ApiImplicitParam(name = "endTime", value = "结束时间"),
+            @ApiImplicitParam(name = "type", value = "类型 年/月/日")
     })
     @Swagger2CommonConfiguration
+    @PreAuthorize("hasAuthority('REPORT_VIEW')")
     public Result getMemberCount(@RequestBody ReportMemberCondition condition) {
         return new Result(memberService.getMemberCount(condition));
     }
@@ -40,6 +39,7 @@ public class ReportController {
     @PostMapping("/getSetmealCount")
     @ApiOperation(value = "饼图生成", notes = "通过计算套餐预定总数来生成饼图")
     @Swagger2CommonConfiguration
+    @PreAuthorize("hasAuthority('REPORT_VIEW')")
     public Result getSetmealCount() {
         return new Result(memberService.getSetmealCount());
     }

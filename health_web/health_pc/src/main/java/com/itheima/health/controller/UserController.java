@@ -14,6 +14,8 @@ import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 /**
  * @author wangweili
  * @version 1.0
@@ -81,7 +83,7 @@ public class UserController {
         return new Result(userService.deleteUserById(id));
     }
 
-    @ApiOperation(value = "查询角色组",notes = "根据用户id查询")
+    @ApiOperation(value = "查询角色组", notes = "根据用户id查询")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "要搜索的id")
     })
@@ -92,4 +94,14 @@ public class UserController {
         return new Result(userService.findRoleInfoById(id));
     }
 
-}
+    @ApiOperation(value = "修改密码", notes = "修改密码功能")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "old", value = "旧密码"),
+            @ApiImplicitParam(name = "new", value = "新密码")
+    })
+    @Swagger2CommonConfiguration
+    @PostMapping("/changePassword")
+    public Result changePassword(@RequestBody Map<String, String> password) {
+        return new Result(userService.changePassword(password.get("username"), password.get("old"), password.get("newPass")));
+    }
+}   

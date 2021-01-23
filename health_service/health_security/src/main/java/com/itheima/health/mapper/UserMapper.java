@@ -5,10 +5,7 @@ import com.itheima.health.pojo.Permission;
 import com.itheima.health.pojo.User;
 import com.itheima.health.vo.RoleVO;
 import com.itheima.health.vo.UserVO;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 import java.util.Set;
@@ -35,5 +32,8 @@ public interface UserMapper extends BaseMapper<User> {
 
     @Select("select t_role.id from t_role,t_user_role,t_user where t_role.id=t_user_role.role_id and t_user.id=t_user_role.user_id and t_user.id=#{id}")
     List<Integer> findRoleInfoById(@Param("id") Integer id);
+
+    @Update("update t_user set password = #{password} where username = #{username}")
+    boolean updatePassword(@Param("username") String username, @Param("password") String password);
 
 }

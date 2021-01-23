@@ -5,8 +5,6 @@ import com.itheima.health.entity.ReportEntity;
 import com.itheima.health.entity.ReportMemberCondition;
 import com.itheima.health.pojo.Member;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,4 +20,5 @@ public interface MemberService extends IService<Member> {
     ReportEntity getMemberCount(ReportMemberCondition condition);
 
     List<Map<String,String>> getSetmealCount();
+
 }

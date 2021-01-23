@@ -58,6 +58,17 @@ public class RoleController {
         return new Result(roleService.findPermissionInfoById(id));
     }
 
+    @ApiOperation(value = "查找拥有菜单", notes = "根据角色id查询其相应的菜单")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "角色id")
+    })
+    @PostMapping("/findMenuInfoById/{id}")
+    @Swagger2CommonConfiguration
+    @PreAuthorize("hasAuthority('MENU_EDIT')")
+    public Result findMenuInfoById(@PathVariable("id") Integer id) {
+        return new Result(roleService.findMenuInfoById(id));
+    }
+
     @ApiOperation(value = "增加角色", notes = "增加角色")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "role", value = "封装的角色数据")
@@ -79,4 +90,13 @@ public class RoleController {
     public Result deleteRoleById(@PathVariable("id") Integer id) {
         return new Result(roleService.deleteRoleById(id));
     }
+
+    @ApiOperation(value = "查询目录", notes = "查询所有目录")
+    @GetMapping("/findAllMenu")
+    @Swagger2CommonConfiguration
+    @PreAuthorize("hasAuthority('MENU_QUERY')")
+    public Result findAllMenu() {
+        return new Result(roleService.findAllMenu());
+    }
+    
 }

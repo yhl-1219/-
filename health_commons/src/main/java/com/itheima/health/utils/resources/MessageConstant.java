@@ -73,4 +73,6 @@ public class MessageConstant {
     public static final String GET_SETMEAL_COUNT_REPORT_FAIL = "获取套餐统计数据失败";
     public static final String GET_BUSINESS_REPORT_SUCCESS = "获取运营统计数据成功";
     public static final String GET_BUSINESS_REPORT_FAIL = "获取运营统计数据失败";
+    public static final String APPOINTMENT_MOCK_THROW_EXCEPTION_WORD = "当前页面访问人数较多，请稍后再试";
+    public static final String EDIT_NOW_USER_OLD_PASSWORD_NOT_CORRECT = "密码不正确，请重试";
 }

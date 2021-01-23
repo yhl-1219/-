@@ -18,6 +18,7 @@
     <script src="../plugins/vue/vue.js"></script>
     <script src="../plugins/vue/axios-0.18.0.js"></script>
     <script src="../plugins/elementui/index.js"></script>
+    <script src="../plugins/TCaptcha.js"></script>
     <script>
         var id = getUrlParam("id");
     </script>
@@ -122,16 +123,25 @@
                 if (!checkTelephone(telephone)) {
                     this.$message.error('请输入正确的手机号');
                     return false;
+                }else {
+                    // 直接生成一个验证码对象。
+                    var slider = new TencentCaptcha('2000230086', function(res) {
+                        if (res.ret === 0){
+                            axios.post("/setmeal/generateCode/" + telephone).then(res => {
+                                if (res.data.flag) {
+                                    this.$message.success("验证码已发送，五分钟内有效");
+                                } else {
+                                    this.$message.error(res.data.message);
+                                }
+                            })
+                            validateCodeButton = $("#validateCodeButton")[0];//使用变量validateCodeButton用来接收input标签
+                            clock = window.setInterval(doLoop, 1000); //每隔一秒执行一次doLoop方法
+                        }
+                    });
+                    slider.show(); // 显示验证码
                 }
-                axios.post("/setmeal/generateCode/" + telephone).then(res => {
-                    if (res.data.flag) {
-                        this.$message.success("验证码已发送，五分钟内有效");
-                    } else {
-                        this.$message.error(res.data.message);
-                    }
-                });
-                validateCodeButton = $("#validateCodeButton")[0];//使用变量validateCodeButton用来接收input标签
-                clock = window.setInterval(doLoop, 1000); //每隔一秒执行一次doLoop方法
+
+
             },
             //提交预约
             submitOrder() {
@@ -160,7 +170,8 @@
                     this.$message.error(res.data.message);
                 }
             })
-        }
+        },
+
     });
 </script>
 <script>

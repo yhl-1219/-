@@ -21,7 +21,7 @@ import javax.annotation.Resource;
 public class StartupListener implements ApplicationListener<ContextRefreshedEvent> {
 
     @Resource
-    private RedisTemplate<String, Object> redisTemplate;
+    private RedisTemplate<Object, Object> redisTemplate;
 
     @Resource
     private DistributedRedisLock distributedRedisLock;

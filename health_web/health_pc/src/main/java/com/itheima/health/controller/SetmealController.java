@@ -22,7 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author wangweili 
+ * @author wangweili
  */
 @RestController
 @RequestMapping("/setmeal")
@@ -72,7 +72,10 @@ public class SetmealController {
     @Swagger2CommonConfiguration
     @PreAuthorize("hasAuthority('SETMEAL_DELETE')")
     public Result deleteSetmealById(@PathVariable("id") Integer id) {
-        return new Result(setmealService.delete(id));
+        setmealService.delete(id);
+        RedisUtil.delete(RedisConstant.SETMEAL_FINDALL + id);
+        RedisUtil.delete(RedisConstant.SETMEAL_FINDALL);
+        return new Result(true);
     }
 
     @PostMapping("/findGroupIdsBySetmealId/{id}")

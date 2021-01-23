@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="health_core" />
         <module name="health_tm" />
+        <module name="health_pay" />
         <module name="health_commons" />
         <module name="health_appointment" />
         <module name="health_pc" />
@@ -23,6 +24,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="health_appointment_mock" target="1.8" />
+      <module name="health_appointmentmock" target="1.8" />
       <module name="health_xxl_job" target="1.8" />
     </bytecodeTargetLevel>
   </component>
@@ -30,12 +33,15 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="health_api" options="-parameters" />
       <module name="health_appointment" options="-parameters" />
+      <module name="health_appointment_mock" options="-parameters" />
+      <module name="health_appointmentmock" options="-parameters" />
       <module name="health_commons" options="-parameters" />
       <module name="health_core" options="-parameters" />
       <module name="health_h5" options="-parameters" />
       <module name="health_member" options="-parameters" />
       <module name="health_mq" options="-parameters" />
       <module name="health_order" options="-parameters" />
+      <module name="health_pay" options="-parameters" />
       <module name="health_pc" options="-parameters" />
       <module name="health_report" options="-parameters" />
       <module name="health_security" options="-parameters" />

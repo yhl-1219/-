@@ -3,6 +3,7 @@ package com.itheima.health.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.itheima.health.entity.PageResult;
 import com.itheima.health.entity.QueryPageBean;
+import com.itheima.health.pojo.Menu;
 import com.itheima.health.pojo.Permission;
 import com.itheima.health.pojo.Role;
 
@@ -19,7 +20,11 @@ public interface RoleService extends IService<Role> {
 
     List<Permission> findAllPermission();
 
+    List<Menu> findAllMenu();
+
     Integer[] findPermissionInfoById(Integer id);
+
+    Integer[] findMenuInfoById(Integer id);
 
     boolean addOrUpdateRole(Role role);
 

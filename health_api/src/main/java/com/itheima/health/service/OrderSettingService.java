@@ -20,4 +20,6 @@ public interface OrderSettingService extends IService<OrderSetting> {
     int isOrderOkOrNot(String orderdate);
 
     void updateReservationsByOrderDate(String orderdate);
+
+    void clearOrderSettingHistoryData();
 }

@@ -55,6 +55,10 @@ public class Menu implements Serializable{
      */
     @TableField(value = "PARENTMENUID")
     private Integer parentMenuId;
+    /**
+     * 水平等级
+     */
+    private Integer level;
 
 
 }

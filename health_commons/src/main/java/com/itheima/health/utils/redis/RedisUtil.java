@@ -9,47 +9,30 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-/**
- * @author wangweili
- */
 public class RedisUtil {
 
-    private RedisUtil() {
-    }
+    private static RedisTemplate<Object, Object> redisTemplate;
 
-    /**
-     * SpringBoot redis操作类
-     */
-    private static RedisTemplate<String, Object> redisTemplate;
-
-    /**
-     * 分布式锁
-     */
     private static DistributedRedisLock distributedRedisLock;
 
-    public static void registerLock(DistributedRedisLock lock) {
+    public static void registerLock(DistributedRedisLock lock){
         distributedRedisLock = lock;
     }
 
-    /**
-     * 默认超时时间
-     */
-    private static final int DEFAULT_TIME_OUT = -1;
+    private static int DETAULT_TIME_OUT = -1;
 
-    public static void register(RedisTemplate<String, Object> template) {
+    public static void register(RedisTemplate<Object, Object> template) {
         redisTemplate = template;
         redisTemplate.setKeySerializer(new StringRedisSerializer());
         redisTemplate.setValueSerializer(new GenericFastJsonRedisSerializer());
-        //FastJsonRedisSerializer<>(Object.class)
-        redisTemplate.setEnableTransactionSupport(true);
     }
 
-    public static RedisTemplate<String, Object> getInstance() {
+    public static RedisTemplate<Object, Object> getInstance() {
         return redisTemplate;
     }
 
     public static void set(String key, Object value) {
-        set(key, value, DEFAULT_TIME_OUT);
+        set(key, value, DETAULT_TIME_OUT);
     }
 
     public static void set(String key, Object value, long timeout) {
@@ -57,22 +40,20 @@ public class RedisUtil {
     }
 
     public static void set(String key, Object value, long timeout, TimeUnit timeUnit) {
-        if (timeout > 0) {
+        if (timeout > 0)
             redisTemplate.opsForValue().set(key, value, timeout, timeUnit);
-        } else {
+        else
             redisTemplate.opsForValue().set(key, value);
-        }
         // 判断是否缓存成功
         if (value != null) {
             Object obj = redisTemplate.opsForValue().get(key);
             int tryCount = 0;
             while (obj == null && tryCount <= 3) {
                 tryCount++;
-                if (timeout > 0) {
+                if (timeout > 0)
                     redisTemplate.opsForValue().set(key, value, timeout, timeUnit);
-                } else {
+                else
                     redisTemplate.opsForValue().set(key, value);
-                }
                 obj = redisTemplate.opsForValue().get(key);
             }
             if (obj == null) {
@@ -105,8 +86,8 @@ public class RedisUtil {
         return redisTemplate.hasKey(key);
     }
 
-    public static Object get(String key) {
-        return redisTemplate.opsForValue().get(key);
+    public static <T> T get(String key) {
+        return (T) redisTemplate.opsForValue().get(key);
     }
 
     public static void delete(String key) {
@@ -116,7 +97,7 @@ public class RedisUtil {
     /**
      * @param pattern 正则表达式
      */
-    public static Set<String> keys(String pattern) {
+    public static Set<Object> keys(String pattern) {
         if (pattern.endsWith("*") == false) {
             pattern = pattern + "*";
         }
@@ -138,13 +119,12 @@ public class RedisUtil {
         return redisTemplate.getExpire(key);
     }
 
-    public static void addToSet(String setKey, String value) {
-        redisTemplate.opsForSet().add(setKey, value);
+    public static void addToSet(String setKey,String value){
+        redisTemplate.opsForSet().add(setKey,value);
     }
 
     /**
      * 返回集合中是否包含某个值
-     *
      * @param key
      * @return
      */
@@ -160,24 +140,24 @@ public class RedisUtil {
         return redisTemplate.opsForSet().size(key);
     }
 
-    public static Set getMembersOfSet(String key) {
+    public static Set getMembersOfSet(String key){
         return redisTemplate.opsForSet().members(key);
     }
 
-    public static long incr(String key, long delta) {
+    public static long incr(String key,long delta) {
         return redisTemplate.opsForValue().increment(key, delta);
     }
 
-    public static <T> Set<T> intersect(String key1, String key2) {
-        return (Set<T>) redisTemplate.opsForSet().intersect(key1, key2);
+    public static <T> Set<T> intersect(String key1,String key2){
+        return (Set<T>) redisTemplate.opsForSet().intersect(key1,key2);
     }
 
     public static boolean lock(String key) {
-        return distributedRedisLock.lock(key, 10);
+        return distributedRedisLock.lock(key,10);
     }
 
     public static boolean lock(String key, long timeout) {
-        return distributedRedisLock.lock(key, timeout);
+        return distributedRedisLock.lock(key,timeout);
     }
 
     /**

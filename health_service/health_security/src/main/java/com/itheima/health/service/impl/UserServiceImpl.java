@@ -10,6 +10,7 @@ import com.itheima.health.pojo.Permission;
 import com.itheima.health.pojo.User;
 import com.itheima.health.service.UserService;
 import com.itheima.health.utils.date.DateUtils;
+import com.itheima.health.utils.resources.MessageConstant;
 import com.itheima.health.vo.RoleVO;
 import com.itheima.health.vo.UserVO;
 import lombok.SneakyThrows;
@@ -88,5 +89,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public Integer[] findRoleInfoById(Integer id) {
         return baseMapper.findRoleInfoById(id).toArray(new Integer[0]);
+    }
+
+    @Override
+    public boolean changePassword(String username, String oldPassword, String newPassword) {
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.eq("username", username);
+        User o = getOne(wrapper);
+        if (!createPasswordEncoder().matches(oldPassword, o.getPassword())) {
+            throw new RuntimeException(MessageConstant.EDIT_NOW_USER_OLD_PASSWORD_NOT_CORRECT);
+        }
+
+        baseMapper.updatePassword(username, createPasswordEncoder().encode(newPassword));
+        return true;
     }
 }

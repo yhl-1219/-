@@ -37,4 +37,8 @@ public interface MemberMapper extends BaseMapper<Member> {
             "where t_setmeal.ID = t_order.SETMEAL_ID\n" +
             "group by t_setmeal.name;")
     List<Map<String, String>> getSetmealCount();
+
+    @Select("SELECT IDCARD FROM t_member")
+    List<String> findMemberByIdCard666();
+
 }

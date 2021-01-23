@@ -21,4 +21,6 @@ public interface UserService extends IService<User> {
 
     Integer[] findRoleInfoById(Integer id);
 
+    boolean changePassword(String username,String oldPassword,String newPassword);
+
 }

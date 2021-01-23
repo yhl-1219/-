@@ -10,5 +10,9 @@ public class RedisConstant {
      */
     public static final String ALL_SETMEAL_PIC_SET = "allsetmealPicSet";
     public static final String SINGLE_PIC = "single:file:";
+    
+    public static final String SETMEAL_FINDALL = "findAll:";
+    
+    public static final String SETMEAL_FINDHOTMEAL = "findHotmeal:";
 
 }

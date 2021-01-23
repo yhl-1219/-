@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.SneakyThrows;
 import org.apache.dubbo.config.annotation.Reference;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -46,6 +47,7 @@ public class OrderSettingsController {
             @ApiImplicitParam(name = "month", value = "月")
     })
     @Swagger2CommonConfiguration
+    @PreAuthorize("hasAuthority('ORDERSETTING')")
     public Result findSettingData(@PathVariable("year") int year, @PathVariable("month") int month) {
         return new Result(orderSettingService.findSettingData(year, month));
     }
@@ -57,6 +59,7 @@ public class OrderSettingsController {
             @ApiImplicitParam(name = "orderdate", value = "预约日期")
     })
     @Swagger2CommonConfiguration
+    @PreAuthorize("hasAuthority('ORDERSETTING')")
     public Result updateNumberByOrderdate(@PathVariable("number") int number, @PathVariable("orderdate") String orderdate) {
         return new Result(orderSettingService.updateNumberByOrderDate(number, orderdate));
     }

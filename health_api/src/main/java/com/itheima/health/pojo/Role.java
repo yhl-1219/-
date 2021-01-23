@@ -38,4 +38,7 @@ public class Role implements Serializable {
     @TableField(exist = false)
     private List<Integer> permissionIds;
 
+    @TableField(exist = false)
+    private List<Integer> menuIds;
+
 }

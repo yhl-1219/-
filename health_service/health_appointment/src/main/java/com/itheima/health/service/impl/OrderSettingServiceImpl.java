@@ -20,6 +20,12 @@ import java.util.*;
 @Transactional
 public class OrderSettingServiceImpl extends ServiceImpl<OrderSettingMapper, OrderSetting> implements OrderSettingService {
 
+
+    @Override
+    public void clearOrderSettingHistoryData() {
+        baseMapper.clearOrderSettingHistoryData();
+    }
+
     @Override
     @SneakyThrows
     public boolean importOrderSettings(List<String[]> readExcelList) {

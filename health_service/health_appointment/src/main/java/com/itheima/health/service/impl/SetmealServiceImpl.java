@@ -12,14 +12,16 @@ import com.itheima.health.pojo.CheckItem;
 import com.itheima.health.pojo.Setmeal;
 import com.itheima.health.service.SetmealService;
 import com.itheima.health.utils.aliyunoss.AliyunUtils;
+import com.itheima.health.utils.redis.RandomRedisExpiredTime;
 import com.itheima.health.utils.redis.RedisUtil;
 import com.itheima.health.utils.resources.RedisConstant;
-import com.itheima.health.vo.SetmealVO;
+import lombok.SneakyThrows;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author wangweili
@@ -30,8 +32,13 @@ public class SetmealServiceImpl extends ServiceImpl<SetmealMapper, Setmeal> impl
 
     @Override
     public boolean saveUpdate(SetmealDTO setmealDTO) {
+        Integer id = setmealDTO.getId();
+        if (id != null) {
+            baseMapper.deleteSetmealAndCheckGroupById(id);
+            RedisUtil.delete(RedisConstant.SETMEAL_FINDALL + id);
+            RedisUtil.delete(RedisConstant.SETMEAL_FINDALL);
+        }
         saveOrUpdate(setmealDTO);
-        baseMapper.deleteSetmealAndCheckGroupById(setmealDTO.getId());
         Integer[] checkgroupIds = setmealDTO.getCheckgroupIds();
         if (checkgroupIds != null && checkgroupIds.length != 0) {
             for (Integer checkgroupId : checkgroupIds) {
@@ -89,13 +96,30 @@ public class SetmealServiceImpl extends ServiceImpl<SetmealMapper, Setmeal> impl
 
     @Override
     public Setmeal findSetMealDetailById(int id) {
-        Setmeal setmeal = baseMapper.selectById(id);
-        List<CheckGroup> checkGroupList = baseMapper.findCheckGroupIdsBySetmealId(id);
-        for (CheckGroup checkGroup : checkGroupList) {
-            List<CheckItem> checkItemList = baseMapper.findCheckItemsByGroupId(checkGroup.getId());
-            checkGroup.setCheckItems(checkItemList);
+        if (!RedisUtil.existsKey((RedisConstant.SETMEAL_FINDALL + id))) {
+            Setmeal setmeal = baseMapper.selectById(id);
+            List<CheckGroup> checkGroupList = baseMapper.findCheckGroupIdsBySetmealId(id);
+            for (CheckGroup checkGroup : checkGroupList) {
+                List<CheckItem> checkItemList = baseMapper.findCheckItemsByGroupId(checkGroup.getId());
+                checkGroup.setCheckItems(checkItemList);
+            }
+            setmeal.setCheckGroups(checkGroupList);
+            RedisUtil.set(RedisConstant.SETMEAL_FINDALL + id, setmeal, RandomRedisExpiredTime.getExpireTime(), TimeUnit.MINUTES);
+            return setmeal;
+        } else {
+            return RedisUtil.get(RedisConstant.SETMEAL_FINDALL + id);
         }
-        setmeal.setCheckGroups(checkGroupList);
-        return setmeal;
     }
+
+    @Override
+    @SneakyThrows
+    public List<Setmeal> findAll() {
+        List<Setmeal> findAll = RedisUtil.get(RedisConstant.SETMEAL_FINDALL);
+        if (findAll == null) {
+            findAll = list();
+            RedisUtil.set(RedisConstant.SETMEAL_FINDALL, findAll, RandomRedisExpiredTime.getExpireTime(), TimeUnit.MINUTES);
+        }
+        return findAll;
+    }
+
 }

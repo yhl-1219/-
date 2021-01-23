@@ -4,22 +4,19 @@ import com.itheima.health.config.Swagger2CommonConfiguration;
 import com.itheima.health.entity.Result;
 import com.itheima.health.pojo.Setmeal;
 import com.itheima.health.service.SetmealService;
-import com.itheima.health.utils.redis.RedisUtil;
 import com.itheima.health.utils.resources.MessageConstant;
-import com.itheima.health.utils.resources.RedisMessageConstant;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import lombok.SneakyThrows;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.concurrent.TimeUnit;
-
 /**
- * @author wangweili 
+ * @author wangweili
  */
 @RestController
 @Api(tags = "传智健康移动模块之套餐模块")
@@ -29,15 +26,17 @@ public class SetmealMobileController {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
-    @Reference
+    @Reference(timeout = 1500, mock = "true", interfaceClass = SetmealService.class, check = false)
     private SetmealService setmealService;
 
     @GetMapping("/findAll")
     @ApiOperation(value = "查询所有套餐", notes = "查询所有套餐")
     @Swagger2CommonConfiguration
+    @SneakyThrows
     public Result findAll() {
-        return new Result(setmealService.list());
+        return new Result(setmealService.findAll());
     }
+
 
     @GetMapping("/findSetMealDetail")
     @ApiOperation(value = "查询套餐细节", notes = "使用id查询套餐细节")

@@ -5,7 +5,8 @@ import com.itheima.health.dto.SetmealDTO;
 import com.itheima.health.entity.PageResult;
 import com.itheima.health.entity.QueryPageBean;
 import com.itheima.health.pojo.Setmeal;
-import com.itheima.health.vo.SetmealVO;
+
+import java.util.List;
 
 /**
  * @author wangweili 
@@ -23,4 +24,6 @@ public interface SetmealService extends IService<Setmeal> {
     void clearOssImg();
 
     Setmeal findSetMealDetailById(int id);
+
+    List<Setmeal>  findAll();
 }

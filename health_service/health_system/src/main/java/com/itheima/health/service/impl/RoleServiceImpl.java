@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.itheima.health.mapper.RoleMapper;
 import com.itheima.health.entity.PageResult;
 import com.itheima.health.entity.QueryPageBean;
+import com.itheima.health.pojo.Menu;
 import com.itheima.health.pojo.Permission;
 import com.itheima.health.pojo.Role;
 import com.itheima.health.service.RoleService;
@@ -40,8 +41,18 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
     }
 
     @Override
+    public List<Menu> findAllMenu() {
+        return baseMapper.findAllMenu();
+    }
+
+    @Override
     public Integer[] findPermissionInfoById(Integer id) {
         return baseMapper.findPermissionInfoById(id).toArray(new Integer[0]);
+    }
+
+    @Override
+    public Integer[] findMenuInfoById(Integer id) {
+        return baseMapper.findMenuInfoById(id).toArray(new Integer[0]);
     }
 
     @Override
@@ -53,6 +64,10 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
         List<Integer> permissionIds = role.getPermissionIds();
         for (Integer permissionId : permissionIds) {
             baseMapper.insertPermissionByRoleIdAndPermissionId(role.getId(), permissionId);
+        }
+        List<Integer> menuIds = role.getMenuIds();
+        for (Integer menuId : menuIds) {
+            baseMapper.insertMenuByRoleIdAndMenuId(role.getId(), menuId);
         }
         return true;
     }
